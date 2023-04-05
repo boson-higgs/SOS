@@ -1,0 +1,83 @@
+/dev/sda-z - jsou názvy blokových zařízení pro pevné disky v Linuxu. Tyto zařízení jsou obvykle používány pro vytváření oddílů (partitions) pro souborové systémy, logická a fyzická volume a další účely.
+
+df - slouží k zobrazení informací o použití diskového prostoru (velikosti souborových systémů, použitém a volném prostoru na disku, včetně informací o využití jednotlivých oddílů a vazbě na mountpointy (umístění, kam jsou oddíly připojeny))
+
+df -h - způsobí, že velikost souborových systémů bude zobrazena v lidsky čitelném formátu (v kilobajtech, megabajtech, gigabajtech atd.), místo v bytech
+
+diff <SLOŽKA 1> <SLOŽKA 2> - porovnání obsahu dvou souborů nebo adresářů
+
+/etc/fstab - je konfigurační soubor, který obsahuje informace o tom, jaké souborové systémy mají být připojeny a jak mají být připojeny při spuštění systému. Tyto informace jsou použity při bootování systému pro automatické připojení oddílů a souborových systémů.
+
+cfdisk - textový nástroj pro správu oddílů na blokových zařízeních v Linuxu. Umožňuje uživateli interaktivně vytvářet, měnit a mazat oddíly a řídit rozložení diskového prostoru.
+
+vše v konzoli se neudělá i při startu systému - je nutné nastavit konfigurační soubor, aby k tomu došlo
+
+----------------------------------------------------------------------------------------------------------
+
+MOUNT:
+
+fdisk -l - slouží k zobrazení informací o blokových zařízeních a jejich oddílech
+
+mkfs.ext4 /dev/<Název zařízení nového disku> - slouží k formátování oddílu souborovým systémem ext4. Tento příkaz vytvoří souborový systém na daném oddílu a umožní mu být použitý pro ukládání dat.
+
+mkdir /mnt/new_home -vytvořit přechodnou složku
+
+mount /dev/sdX /mnt/new_home - mount do přechodné složky
+
+rsync <PARAMS> /home/. /mnt/new_home - zkopírovat obsah /home do /mnt/new_home
+
+diff -r /home /mnt/new_home - kontrola, zda kopírování proběhlo v pořádku
+
+umount /mnt/new_home && mount /dev/sdX /home - unmount přechodné složky a následný mount do /home
+
+df -h - kontrola místa (pouze namountované)
+
+lsblk - kontrola disků podrobněji (i nenamountované)
+
+PO STARTU PC:
+
+blkid - zjištění uuid mountovaného disku
+mcedit /etc/fstab - editovat, přidat záznam příslušného disku (pomocí UUID!!!!!!!!!!!!!!)
+záznam by měl vypadata nějak takto: UUID=IDENTIFIKATOR /home typ_souboroveho_systemu defaults 0 2
+
+mount -a - znovu načte konfiguraci a pokusí se namountovat všechny disky
+
+mount - kontrola, že disk správně namountoval
+
+
+RAIDY:
+
+RAID (zkratka pro Redundant Array of Inexpensive Disks nebo také Redundant Array of Independent Disks) je technologie, která umožňuje spojení několika fyzických disků do logické jednotky s vyšší výkonností a spolehlivostí. Cílem je zvýšit rychlost přístupu k datům a/nebo zabezpečit data proti ztrátě v případě selhání jednoho nebo více disků.
+
+RAID 0: používá se pro zvýšení rychlosti čtení a zápisu dat, kdy se data rozdělují mezi více disků. Nevýhodou je však menší spolehlivost, protože v případě selhání jednoho disku dochází k úplné ztrátě všech dat.
+
+RAID 1: používá se pro zabezpečení dat, kdy jsou data na jednom disku zrcadlově duplikována na druhý disk. V případě selhání jednoho disku se data stále nacházejí na druhém disku.
+
+RAID 5: používá se pro zvýšení výkonu a zabezpečení dat, kdy se data rozdělují a paritní informace jsou zapisovány na jiný disk. Pokud selže jeden disk, data lze obnovit z paritní informace.
+
+RAID 6: je podobný RAIDu 5, ale s dvěma paritními disky, což zvyšuje spolehlivost v případě selhání více disků.
+
+RAID 10: kombinuje funkce RAIDu 0 a RAIDu 1, kdy jsou data rozdělena na dva disky, které jsou následně zrcadlově duplikovány na další dva disky.
+
+mdadm --create /dev/md0 --level=1 --raid-devices=2 /dev/sdb1 /dev/sdc1 --spare-devices=1 /dev/sdd1
+
+vytvořit nový souborový systém nad raidem
+
+mdadm --detail /dev/md0 - zobrazí detail o RAIDu
+
+mdadm --manage /dev/md0 --add /dev/sdc1 - přidá nový disk do RAIDu
+
+mdadm /dev/md0 --remove /dev/sdb1 - odstranění spare disku
+
+mdadm --detail --scan - detaily o raidech
+
+watch "cat /proc/mdstat" - watch umožňuje pravidelně spouštět příkaz cat /proc/mdstat v nastavených intervalech (výchozí interval je 2 sekundy), obsahuje informace o aktuálním stavu všech softwarových RAID polí v systému, včetně počtu disků v poli, stavu synchronizace a dalších informacích.
+
+
+
+
+
+
+
+
+zajistit mountování po startu PC

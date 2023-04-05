@@ -1,0 +1,40 @@
+STATICKÁ ADRESA:
+
+konfigurační soubor - iface enp0s8 
+
+utilitka ip
+
+ip address add <ip adresa>/<prefix masky> brd + dev <rozhraní> - nastavení ip adresy
+ip route add defalult via <ip adresa> - nastavení default gateway
+ip route del default via <ip adresa> - zrušení default gateway
+
+man interfaces
+
+/etc/resolv.conf - konfigurace DNS, tento soubor automaticky mění jiné programy (typicky DHCP)
+/etc/dhc-ent.conf - určí co, odkaď, kam má DHCP brát
+
+1. shodit síťovku
+2. změnit konfigurační soubor
+3. nahodit síťovku
+
+FIREWALL:
+
+-filtrování síťové komunikace (něco jako acceess listy)
+
+starý způsob:
+
+viz. odkaz na stránkách
+
+iptables
+iptables -L
+iptables -P OUTPUT DROP
+iptables -P OUTPUT -A -d 192.168.56.0/24 -j ACCEPT
+iptables -F - vymaže se tabulka (pravidla) - nedělat
+
+smazat všechny záznamy:
+iptables -P OUTPUT ACCEPT
+iptables -F
+
+nový způsob:
+
+netfilter

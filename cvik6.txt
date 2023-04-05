@@ -1,0 +1,86 @@
+UŽIVATELSKÉ ÚČTY
+
+getent - příkaz slouží pro získávání informací o uživatelích, skupinách, atd....
+
+/etc/passwd - textový soubor, který obsahuje seznam uživatelů systému
+
+uživatel form:  jméno_uživatele:heslo:identifikátor_uživatele:identifikátor_skupiny:celé_jméno_uživatele:domovský_adresář:příkaz_shell
+
+uživatelské účty > 1000 - uživatelé
+		     < 1000 - systémové účty
+
+
+/nologin - nelze se příhlásit - pro specifické účely 
+
+cat /etc/shadow - soubor s hesly uživatelů ve formátu šílenosti
+man passwd
+    shadow
+
+cat /etc/group - skupiny uživatelů
+
+utilitky:
+
+adduser <Jméno uživatele> - vytvoří uživatele (ručně)
+
+systémový uživatel - --system <Jméno uživatele>
+
+ls -la /etc/skel - template složka pro vytváření uživatelů (zkopíruje se)
+
+deluser - smaže uživatele (defaultně nesmaže jeho domovský adresář - pozor na userID)
+
+useradd - vytvoří uživatele (skriptem) - naučit se parametry
+
+userdel
+
+passwd <Jméno uživatele> - nastaví nové heslo uživateli (uživatel sobě, root všem - nemůže původní heslo vidět)
+
+-e - expirace hesla (vynutí uživateli změnit si heslo)
+
+addgroup <Název skupiny> - přidá skupinu
+addgroup <Jméno uživatele> <Název existující skupiny> - přidá uživatele do skupiny
+groupadd
+
+delgroup - odstraní skupinu (či uživatele ze skupiny)
+
+chmod g+x <Název souboru> - přidá exec skupině
+
+chgrp <Název skupiny> <Název souboru/uživatele> - změní skupinu souboru nebo uživateli
+
+s/t bit:
+
+s bit - chmod g+s <Název> - pro nastavení vlastnictví nadřezené složky (potencionální bezpečnostní hrozba)
+t bit - chmod o+t <Název> - mazat soubory složky může pouze vlastník (a root)
+
+diskové quoty:
+
+vytvořit partition, fstab
+
+apt install quota
+
+mount -o remount - odmoountovat a mountovat
+
+povolit ve fstabu
+
+edquota - editace quot
+export EDITOR=mcedit - změna editoru
+
+bloky - velikost quoty
+měkký - uživatel může quotu překročit (dočasně)
+pevný - uživatel nemůže qutou překročit
+
+měkký/tvrdý - limit na počet souborů
+
+chage - slouží k úpravě informací o platnosti hesla uživatelů 
+
+dd utilitka
+
+mount -o remount,usrquota,grpquota /home - globální - opětovně připojí souborový systém připojený k /home a povoluje kvóty pro uživatele a skupiny
+
+service quota start - spustí službu kvót, což je systémový démon, který sleduje a omezuje využití diskového prostoru uživatelem
+
+quotacheck /dev/sdb1 - spouští kontrolu kvót na souborovém systému, který je připojen k zařízení /dev/sdb1
+
+quotaon /dev/sdb1 - povoluje kvóty na souborovém systému připojeném k zařízení /dev/sdb1
+
+edquota franta - otevře konfigurační soubor s kvótami pro uživatele, bude otevřen textový editor
+edquota -p <Název prototypu> <Jméno uživatele> - uživatel bude mít quotu jako definovaný prototyp
