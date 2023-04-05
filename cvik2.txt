@@ -1,0 +1,19 @@
+A
+
+1. - for i in $(ssh <login>@linedu.vsb.cz "ls /home/fei | grep 00"); do mkdir $i; echo $i; done
+
+2. - for i in $(GET http://seidl.cs.vsb.cz/download/seznam-obci-cr.txt | grep ova | grep -v Nova | tr " " "_"); do  mkdir $i; echo $i | tr "_" " "; done
+
+3. - for i in $(GET http://seidl.cs.vsb.cz/download/obce_psc.csv.txt | cut -d "," -f 1,6 | grep -v CAST_OBCE | grep -w -E "^[0-9]*5[0-9]*,.*$" | cut -d "," -f 2 | tr " " "_"); do mkdir $i; echo $i | tr "_" " "; done
+
+4. - for i in $(GET http://seidl.cs.vsb.cz/download/posty.csv.txt | cut -d ";" -f 1,4 | grep -v NAZPOSTY | grep -w -E "^.*;.*5.*$" | grep -v 55 | cut -d ";" -f 1 | tr -d '"' | tr " " "_"); do mkdir $i; echo $i | tr "_" " "; done
+
+B
+
+0. - for i in $(ls); do cd $i; touch names.txt; actualname=$(basename $(pwd) | head -c 1); find ../ -type d -name "${actualname}*" -print | tr -d "./" > names.txt; cd ../; done
+
+ 
+
+
+
+ 
