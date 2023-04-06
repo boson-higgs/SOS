@@ -72,7 +72,6 @@ měkký/tvrdý - limit na počet souborů
 
 chage - slouží k úpravě informací o platnosti hesla uživatelů 
 
-dd utilitka
 
 mount -o remount,usrquota,grpquota /home - globální - opětovně připojí souborový systém připojený k /home a povoluje kvóty pro uživatele a skupiny
 
@@ -84,3 +83,8 @@ quotaon /dev/sdb1 - povoluje kvóty na souborovém systému připojeném k zař�
 
 edquota franta - otevře konfigurační soubor s kvótami pro uživatele, bude otevřen textový editor
 edquota -p <Název prototypu> <Jméno uživatele> - uživatel bude mít quotu jako definovaný prototyp
+
+quota -s -u jmeno - zobrazí souhrnné informace o kvótě pro uživatele "jmeno", včetně využitého a dostupného místa, v lidsky čitelné formě
+
+dd utilitka
+dd if=/dev/zero of=myfile bs=1G count=1 - vytvoří soubor "myfile" o velikosti 1 GB
