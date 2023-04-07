@@ -1,5 +1,9 @@
 STATICKÁ ADRESA:
 
+/etc/network/* - konfigurace sítě pro systém Linux
+/etc/network/interfaces - obsahuje konfiguraci síťových rozhraní pro Debian a Ubuntu. (lze nastavit statickou IP adresu, DHCP nebo PPPoE připojení pro konkrétní rozhraní)
+
+
 konfigurační soubor - iface enp0s8 
 
 utilitka ip
@@ -17,7 +21,7 @@ man interfaces
 2. změnit konfigurační soubor
 3. nahodit síťovku
 
-FIREWALL:
+FIREWALL
 
 -filtrování síťové komunikace (něco jako acceess listy)
 
