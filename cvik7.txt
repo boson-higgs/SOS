@@ -1,5 +1,6 @@
 STATICKÁ ADRESA:
 
+----------------------1. - 5. úkol (společný pro všechny)----------------------
 /etc/network/* - konfigurace sítě pro systém Linux
 /etc/network/interfaces - obsahuje konfiguraci síťových rozhraní pro Debian a Ubuntu. (lze nastavit statickou IP adresu, DHCP nebo PPPoE připojení pro konkrétní rozhraní)
 auto enp0s8
@@ -22,7 +23,7 @@ ExecStop=/usr/bin/tlp init stop
 [Install]
 WantedBy=multi-user.target
 
-vytvořit skript, který se spustí souborem .service
+vytvořit skript, který se spustí souborem .service s obsahem:
 
 -----------------1. ukol--------------------------------
 #!/bin/bash
@@ -45,7 +46,7 @@ iptables -A INPUT -p tcp --dport 22 -s 192.168.1.1 -j ACCEPT
 iptables -A INPUT -p tcp --dport 22 -s 10.0.0.2 -j ACCEPT
 
 # Uložit pravidla
-iptables-save > /etc/iptables/rules.v4
+iptables-save > /etc/iptables
 -----------------------------------------------------------------
 
 utilitka ip
