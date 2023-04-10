@@ -23,6 +23,7 @@ ExecStop=/usr/bin/tlp init stop
 [Install]
 WantedBy=multi-user.target
 
+//SEM jak zprovoznit servicu
 vytvořit skript, který se spustí souborem .service s obsahem:
 
 -----------------1. ukol--------------------------------
