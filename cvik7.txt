@@ -27,7 +27,8 @@ systemctl daemon-reload - reload systemd konfigurace po vytvoření nové servis
 systemctl start <název>.service - start nové service
 systemctl enable <název>.service - start s každým bootem systému
 systemctl status <název>.service - informace o servise (hledat, jestli je enabled -> start s bootem počítače {opak je disabled})
-(restart servisy je systemctl restart <název>.service)
+(restart servisy, která běží je systemctl restart <název>.service)
+(zastavení servisy, která běží je systemctl stop <název>.service)
 
 vytvořit skript, který se spustí souborem .service s obsahem:
 
