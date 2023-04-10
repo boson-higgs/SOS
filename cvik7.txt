@@ -2,9 +2,30 @@ STATICKÁ ADRESA:
 
 /etc/network/* - konfigurace sítě pro systém Linux
 /etc/network/interfaces - obsahuje konfiguraci síťových rozhraní pro Debian a Ubuntu. (lze nastavit statickou IP adresu, DHCP nebo PPPoE připojení pro konkrétní rozhraní)
+auto enp0s8
+iface enp0s8 inet static
+address <ip adresa>
+netmask <maska>
+
+/etc/systemd/system - vytvořit soubor .service
+[Unit]
+Description=TLP system startup/shutdown
+Wants=bluetooth.service NetworkManager.service
+After=multi-user.target bluetooth.service NetworkManager.service
+Before=shutdown.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/tlp init start
+ExecStop=/usr/bin/tlp init stop
+
+[Install]
+WantedBy=multi-user.target
+
+vytvořit skript, který se spustí souborem .service
 
 
-konfigurační soubor - iface enp0s8 
+
 
 utilitka ip
 
