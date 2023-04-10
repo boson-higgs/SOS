@@ -1,6 +1,10 @@
 STATICKÁ ADRESA:
 
 ----------------------1. - 5. úkol (společný pro všechny)----------------------
+PREREKVIZITY:
+apt install iptables - nainstaluje iptables
+
+
 /etc/network/* - konfigurace sítě pro systém Linux
 /etc/network/interfaces - obsahuje konfiguraci síťových rozhraní pro Debian a Ubuntu. (lze nastavit statickou IP adresu, DHCP nebo PPPoE připojení pro konkrétní rozhraní)
 auto enp0s8
@@ -26,7 +30,7 @@ WantedBy=multi-user.target
 systemctl daemon-reload - reload systemd konfigurace po vytvoření nové servisy
 systemctl start <název>.service - start nové service
 systemctl enable <název>.service - start s každým bootem systému
-systemctl status <název>.service - informace o servise (hledat, jestli je enabled -> start s bootem počítače {opak je disabled})
+systemctl status <název>.service - informace o servise (hledat, jestli je enabled -> kontrola startu servicy s bootem počítače {opak je disabled}{alternativa k restartu PC})
 (restart servisy, která běží je systemctl restart <název>.service)
 (zastavení servisy, která běží je systemctl stop <název>.service)
 
