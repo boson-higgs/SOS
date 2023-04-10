@@ -7,7 +7,7 @@ iface enp0s8 inet static
 address <ip adresa>
 netmask <maska>
 
-/etc/systemd/system - vytvořit soubor .service
+/etc/systemd/system - vytvořit soubor <název>.service
 [Unit]
 Description=TLP system startup/shutdown
 Wants=bluetooth.service NetworkManager.service
