@@ -30,7 +30,7 @@ systemctl status <název>.service - informace o servise (hledat, jestli je enabl
 (restart servisy, která běží je systemctl restart <název>.service)
 (zastavení servisy, která běží je systemctl stop <název>.service)
 
-vytvořit skript, který se spustí souborem .service s obsahem:
+vytvořit skript, který se spustí souborem <název>.service s obsahem:
 
 -----------------1. ukol--------------------------------
 #!/bin/bash
