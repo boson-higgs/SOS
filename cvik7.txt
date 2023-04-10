@@ -24,8 +24,29 @@ WantedBy=multi-user.target
 
 vytvořit skript, který se spustí souborem .service
 
+-----------------1. ukol--------------------------------
+#!/bin/bash
 
+# Smazat existující pravidla
+iptables -F
 
+# Nastavit defaultní politiku pro INPUT na DROP
+iptables -P INPUT DROP
+
+# Povolit lokální spojení
+iptables -A INPUT -i lo -j ACCEPT
+
+# Povolit přístup na port 80 a 443 z libovolného zdroje
+iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+
+# Povolit přístup na port 22 pouze z definovaných IP adres
+iptables -A INPUT -p tcp --dport 22 -s 192.168.1.1 -j ACCEPT
+iptables -A INPUT -p tcp --dport 22 -s 10.0.0.2 -j ACCEPT
+
+# Uložit pravidla
+iptables-save > /etc/iptables/rules.v4
+-----------------------------------------------------------------
 
 utilitka ip
 
