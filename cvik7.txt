@@ -29,14 +29,18 @@ WantedBy=multi-user.target
 
 systemctl daemon-reload - reload systemd konfigurace po vytvoření nové servisy
 systemctl start <název>.service - start nové service
-systemctl enable <název>.service - start s každým bootem systému
+systemctl enable <název>.service - start s každým bootem systémuu
 systemctl status <název>.service - informace o servise (hledat, jestli je enabled -> kontrola startu servicy s bootem počítače {opak je disabled}{alternativa k restartu PC})
 (restart servisy, která běží je systemctl restart <název>.service)
 (zastavení servisy, která běží je systemctl stop <název>.service)
 
 vytvořit skript, který se spustí souborem <název>.service s obsahem:
 
+!!!!!!!!!!!!NEZAPOMENOUT POVOLIT IP ADRESU (či rozhraní), KTEROU SE PŘIPOJUJE K SERVERU!!!!!!!!!!!!!
+
 -----------------1. ukol--------------------------------
+
+
 #!/bin/bash
 
 # Smazat existující pravidla
@@ -45,8 +49,11 @@ iptables -F
 # Nastavit defaultní politiku pro INPUT na DROP
 iptables -P INPUT DROP
 
-# Povolit lokální spojení
+# Povolit lokální spojení (loopback)
 iptables -A INPUT -i lo -j ACCEPT
+
+# Povolit konfigurační spojení
+iptables -A INPUT -i enp0s8 -j ACCEPT
 
 # Povolit přístup na port 80 a 443 z libovolného zdroje
 iptables -A INPUT -p tcp --dport 80 -j ACCEPT
@@ -58,7 +65,76 @@ iptables -A INPUT -p tcp --dport 22 -s 10.0.0.2 -j ACCEPT
 
 # Uložit pravidla
 iptables-save > /etc/iptables
------------------------------------------------------------------
+
+-----------------2. ukol--------------------------------
+#!/bin/bash
+
+iptables -F
+iptables -P INPUT ACCEPT
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A INPUT -i enp0s8 -j ACCEPT
+iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+iptables -A INPUT -p tcp --dport 22 -s 192.168.1.1 -j ACCEPT
+iptables -A INPUT -p tcp --dport 22 -s 10.0.0.2 -j ACCEPT
+iptables-save > /etc/iptables
+
+-----------------3. ukol--------------------------------
+#!/bin/bash
+
+iptables -F
+iptables -P OUTPUT DROP
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A INPUT -i enp0s8 -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 80 -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 443 -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 22 -d 192.168.1.1 -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 22 -d 10.0.0.2 -j ACCEPT
+iptables-save > /etc/iptables
+
+-----------------4. ukol--------------------------------
+#!/bin/bash
+
+iptables -F
+iptables -P OUTPUT ACCEPT
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A INPUT -i enp0s8 -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 80 -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 443 -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 22 -d 192.168.1.1 -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 22 -d 10.0.0.2 -j ACCEPT
+iptables-save > /etc/iptables
+
+-----------------5. ukol--------------------------------
+#!/bin/bash
+
+iptables -F
+iptables -P OUTPUT DROP
+iptables -P INPUT DROP
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A INPUT -i enp0s8 -j ACCEPT
+iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 22 -j ACCEPT
+iptables-save > /etc/iptables
+
+----------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 utilitka ip
 
