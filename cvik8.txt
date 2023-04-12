@@ -1,0 +1,59 @@
+------------------------------SLUŽBY SA SERVERECH----------------------------------
+
+---Apache - webový server---
+apt install apache2
+konfigurace v /etc/apache2  (available -> dostupné, enable -> )
+default.conf, default-ssl.conf
+sites-available/000-default.conf
+nedělat ručně link!
+/var/www/html/index.html
+
+-LAMP server-
+apt install libapache2-mod-php (apt search apache2 | grep php)
+cd /var/www/html
+echo "<?php phpinfo(); >" > index.html
+mv index.html index.php
+mods-enabled  - povolené moduly
+ssl - modul pro https
+a2enmod ssl - povolení ssl
+po každé změně modulu systemctl restart apache2
+a2ensite default-ssl (zatím obsahuje certifikát, který jsme si podepsali sami sobě)
+systemctl reload apache2
+modul userdir.load pro prezentování stránek uživatelů
+a2enmod userdir
+systemctl restart apache2
+v domovském adrsáři uživatele /home/jmeno_uzivatele vytvoříme složku public_html, tam vytvoříme index.html, pak na adresa_web_serveru/~jmeno_uzivatele má uživatel vlastní stránky
+(v sites-enabled link, podívat se, zda jsou moduly povolené)
+logy Apache ve /var/log/a
+
+--DHCP server---
+vytvořit vboxnet1 (máme vboxnet0 a vboxnet1)
+vytvořit další virtual, kterému necháme jednu síťovou kartu, kterou připojíme do sítě pouze s hostem vboxnet1, ta síť nebude mít vlastní DHCP server, protože jím bude ten virtual
+v jedné síti zašrtneme DHCP server - vboxnet1 nebude mít DHCP server!
+nastavit fixní statickou pevnou ip adresu na VM, který je DHCP server (na iface enp0s8)
+apt install isc-dhcp-server (musí se nejprve nakonfigurovat, aby se spustil)
+(iface up down)
+/etc/default/isc-dhcp-server
+    INTERFACE=enp0s8
+dhcpd.conf
+    option domain-name-servers 158.196.0.53 (nebo 8.8.8.8 mimo u-síť)
+    subnet 192.168.57.0 netmask 255.255.255.0{
+        range 192.168.57.150 192.168.57.160;
+        option routers 192.168.57.2 (adresa toho vm)
+    }
+service isc-dhcp-server restart
+pak spustíme klienta-vm, měl by obdržet adresu od našeho dhcp serveru v rozsahu nakonfigurovaném v /etc/default/isc-dhcp-server
+cat /etc/resolv.conf
+
+---NFS server---
+apt install nfs-kernel-server
+konfigurace v /etc/exports
+    /home 192.168.57.0/24 (rw,sync,no_subtree_check)  - [složku home přimountujeme na]
+service nfs-kernel-server restart
+exportfs
+poté na klientském počítači vyzkoušíme:
+	apt install nfs-common
+	iptables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE
+	echo 1 > /proc/sys/net/ipv4/ip_forward  (/etc/sysctl?)
+	mount 192.168.57.2:/home /mnt/
+	ve fstabu: 192.168.57.2:/home   /mnt   nfs  defaults
