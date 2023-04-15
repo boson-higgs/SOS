@@ -1,3 +1,3 @@
-#Linux a jeho instalace
+# Linux a jeho instalace
 
 GNU/Linux - operační 
