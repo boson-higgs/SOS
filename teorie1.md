@@ -105,7 +105,7 @@
                     </tr>
                     <tr>
                         <td>/sys</td>
-                        <td>moderní variant složky /proc</td>
+                        <td>moderní varianta složky /proc</td>
                     </tr>
                     <tr>
                         <td>/tmp</td>
