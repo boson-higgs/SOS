@@ -101,7 +101,7 @@
                     </tr>
                     <tr>
                         <td>/srv</td>
-                        <td>ne příliš využívána složka</td>
+                        <td>ne příliš využívaná složka</td>
                     </tr>
                     <tr>
                         <td>/sys</td>
