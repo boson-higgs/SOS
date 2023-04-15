@@ -119,10 +119,6 @@
                         <td>/var</td>
                         <td>složka určená pro stacionární (měnící se) soubory (nachází zde složka log)<td>
                     </tr>
-                    <tr>
-                        <td>/var</td>
-                        <td>složka určená pro stacionární (měnící se) soubory (nachází zde složka log)<td>
-                    </tr>
                 </table>
             </li>
         </ul>
