@@ -7,14 +7,11 @@
         ```console
         root@<your_computer_name>:~$ echo $PATH
         ```
-        - výpíše všechny cesty, ve kterých hledá daný program (příkaz)
-        - cesty jsou oddělené dvojtečkami
-    - pokud daný příkaz ve svých cestách nenajde, je nutné zadat příkaz absolutní cestou:
+        - výpíše všechny cesty, ve kterých příkazový řádek hledá daný program (příkaz)
+        - ve výpisu jsou cesty oddělené dvojtečkami
+    - pokud daný příkaz není v cestách nalzen, vypíše se, že daný příkaz neexistuje
+    - v takovém případě je nutné zadat příkaz absolutní cestou:
         - pro zjištění absolutní cesty určitého příkazu lze použít příkaz "whereis":
-            ```console
-            root@<your_computer_name>:~$ whereis <your_command>
-            ```
-            - vypíše absolutní cestu příkazu
 
             ```console
             root@<your_computer_name>:~$ whereis blkid
