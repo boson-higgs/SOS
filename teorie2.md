@@ -8,9 +8,10 @@
             <li>
                 <div>Výpis proměnné PATH:<div>
                 <br>
-                <pre>
-                    <code  class="bash">echo $PATH</code>
-                </pre>
+                ```console
+                foo@bar:~$ whoami
+                foo
+                ```
             </li>
         </ul>
     </li>
