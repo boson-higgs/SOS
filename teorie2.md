@@ -7,7 +7,7 @@
         ```console
         root@<your_computer_name>:~$ echo $PATH
         ```
-        - výpíše všechny cesty, ve kterých příkazový řádek hledá daný program (příkaz)
+        - vypíše všechny cesty, ve kterých příkazový řádek hledá daný program (příkaz)
         - ve výpisu jsou cesty oddělené dvojtečkami
     - pokud daný příkaz není v cestách nalzen, vypíše se, že daný příkaz neexistuje
     - v takovém případě je nutné zadat příkaz absolutní cestou:
