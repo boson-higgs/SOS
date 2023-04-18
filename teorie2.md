@@ -9,7 +9,7 @@
                 <div>Výpis proměnné PATH:<div>
                 <br>
                 <pre>
-                    <code  class="language-bash">echo $PATH</code>
+                    <code  class="bash">echo $PATH</code>
                 </pre>
             </li>
         </ul>
