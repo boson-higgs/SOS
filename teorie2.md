@@ -7,8 +7,9 @@
             <li>obsahuje všechny cesty, ve kterých příkazový řadek hledá příslušný program</li>
             <li>
                 <div>Výpis proměnné PATH:<div>
+                <br>
                 <pre>
-                    <code>echo $PATH</code>
+                    <code  class="language-bash">echo $PATH</code>
                 </pre>
             </li>
         </ul>
