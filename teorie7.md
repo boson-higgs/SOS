@@ -7,7 +7,7 @@
         ```console
         root@<your_computer_name>:~$ apt install apache2
         ```
-        
+
         - tento příkaz nainstaluje a spustí apache server (webový server)
 
         ```console
@@ -39,7 +39,7 @@
         
             ```console
             root@<your_computer_name>:~$ /usr/aesbin/a2enmod
-            ```  
+            ``` 
 
             - zobrazí všechny moduly k aktivaci
 
