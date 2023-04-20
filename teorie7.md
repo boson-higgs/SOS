@@ -2,7 +2,7 @@
 
 - ## LAMP (Linux, Apache, MariaDB (kdysi MySQL), PHP/Perl/Python) server
     - umožňuje z jednoho serveru (jedné IP adresy) zprovoznit mnoho webových stránek
-    ### Instalace
+    - ### Instalace
 
         ```console
         root@<your_computer_name>:~$ apt install apache2
@@ -28,7 +28,7 @@
             - tento příkaz restartuje apache server
             - tento příkaz nemusí být v cestách ($PATH), nachází se ve složce ```/usr/sbin```
 
-    ### Konfigurace
+    - ### Konfigurace
         - konfigurační soubory serveru apache se nachazí se ve složce ```/etc/apache2```
         - jednotlivé webové stránky se nachází ve složce ```/var/www/html```
         - #### Povolení (aktivace) modulu
@@ -61,14 +61,14 @@
 - ## NFS (Network File System) server
     - systém pro sdílení adresářů mezi PC, kdy se adresáře fyzicky nacházejí na serveru, ale lze je vzdáleně namountovat (jako disk) na předem definovaných klientských PC (definice se realizuje prostřednictvím IP adres)
     - stejným způsobem probíhá sdílení školních domovských adresářů na učebnách
-    ### Instalace
+    - ### Instalace
 
         ```console
             root@<your_computer_name>:~$ apt install nfs-kernel-server
         ```
         - tento příkaz nainstaluje nfs server
 
-    ### Konfigurace
+    - ### Konfigurace
         - pozor na **firewall**!
         - konfigurace tohoto serveru se nachází v souboru /etc/exports
 
@@ -94,7 +94,7 @@
 
         - zároveň je nutné, aby do exportovaného adresáře měli prává všichni uživatele (jinak nepůjde zapisovat do adresáře na vzdáleném (klientském) PC) - nutné změnit prává týkajícího se adresáře pomocí příkazu ```chmod```
 
-    ### Realizace
+    - ### Realizace
         - je nutné mít druhé PC představující klienta (druhý virtuální PC)
         - na klientovi je nutné naistalovat balík, který umožní mountovat prostřednictvím nfs (vzdáleně pomocí IP adres):
         ```console
@@ -111,7 +111,7 @@
 
 - ## DHCP server
     - PC je nutné připojit do sítě, která má ve virtualboxu zakázánou DHCP službu (dva DHCP servery nejsou šťastné řešení)
-    ### Instalace
+    - ### Instalace
     
         ```console
                 root@<your_computer_name>:~$ apt install isc-dhcp-server
@@ -119,7 +119,7 @@
         - tento příkaz nainstaluje DHCP server
         - defaultně se DHCP server nerozběhne (z důvodu kolize přidelených IP adres více DHCP servery)
 
-    ### Konfigurace
+    - ### Konfigurace
         - nachází se ve dvou souborech:
             - první v  ```/etc/default/isc-dhcp-server``` - pouze je nutné přidat do položky ```INTERFACESv4``` rozhraní, které si mají o adresu z DHCP serveru říct (typicky ```enp0s8```)
 
