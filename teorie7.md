@@ -72,7 +72,7 @@
     - ### Instalace
 
         ```console
-            root@<your_computer_name>:~$ apt install nfs-kernel-server
+        root@<your_computer_name>:~$ apt install nfs-kernel-server
         ```
 
         - tento příkaz nainstaluje nfs server
@@ -82,25 +82,25 @@
         - konfigurace tohoto serveru se nachází v souboru /etc/exports
 
         ```
-            <složka_k_exportu>      <konkrétní IP adresa PC či IP adresa sítě (s prefixem)>(<...parametry>)
+        <složka_k_exportu>      <konkrétní IP adresa PC či IP adresa sítě (s prefixem)>(<...parametry>)
         ```
 
         - formát záznamu v konfiguračním souboru
 
         ```
-            /opt      192.168.57.0/24(rw,sync,no_subtree_check)
+        /opt      192.168.57.0/24(rw,sync,no_subtree_check)
         ```
 
         - příklad záznamu v konfiguračním souboru - složka /opt se exportuje pro PC ze sítě 192.168.57.0/24 s parametry rw - čtení/zápis, sync - zápis je synchronní, no_subtree_check - neprochází se struktura adresářů a podaresářů
 
         ```console
-            root@<your_computer_name>:~$ service nfs-kernel-server restart
+        root@<your_computer_name>:~$ service nfs-kernel-server restart
         ```
 
         - po uložení konfigurace je nutné službu restartovat (stejně jako u jiných služeb, u kterých se mění konfigurace)
 
         ```console
-            root@<your_computer_name>:~$ exportfs
+        root@<your_computer_name>:~$ exportfs
         ```
 
         - kontrola, zda konfigurace je správná - příkaz by měl vrátit jendotlivé záznamy
@@ -112,12 +112,12 @@
         - na klientovi je nutné naistalovat balík, který umožní mountovat prostřednictvím nfs (vzdáleně pomocí IP adres):
 
         ```console
-            root@<your_computer_name>:~$ apt install nfs-common
+        root@<your_computer_name>:~$ apt install nfs-common
         ```
 
         - následně je možné vzdáleně namountovat daný adresář ze serveru:
         ```console
-            root@<your_computer_name>:~$ mount 192.168.57.6:/opt /opt
+        root@<your_computer_name>:~$ mount 192.168.57.6:/opt /opt
         ```
 
         - tento příkaz namountuje složku ```/opt``` (druhá čast prvního parametru příkazu - za ```:```) ze serveru, který má IP adresu ```192.168.57.6``` (první část prvního příkazu - před ```:```) do složky ```/opt``` na klientovi (poslední parametr)
@@ -129,7 +129,7 @@
     - ### Instalace
     
         ```console
-                root@<your_computer_name>:~$ apt install isc-dhcp-server
+        root@<your_computer_name>:~$ apt install isc-dhcp-server
         ```
         - tento příkaz nainstaluje DHCP server
         - defaultně se DHCP server nerozběhne (z důvodu kolize přidelených IP adres více DHCP servery)
