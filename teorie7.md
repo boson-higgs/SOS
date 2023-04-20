@@ -38,26 +38,26 @@
         - #### Povolení (aktivace) modulu
         
             ```console
-            root@<your_computer_name>:~$ /usr/aesbin/a2enmod
+            root@<your_computer_name>:~$ /usr/sbin/a2enmod
             ``` 
 
             - zobrazí všechny moduly k aktivaci
 
             ```console
-            root@<your_computer_name>:~$ /usr/aesbin/a2enmod <modul_name>
+            root@<your_computer_name>:~$ /usr/sbin/a2enmod <modul_name>
             ``` 
 
             - aktivace (povolení) konkrétního modulu
 
             ```console
-            root@<your_computer_name>:~$ /usr/aesbin/a2enmod ssl
+            root@<your_computer_name>:~$ /usr/sbin/a2enmod ssl
             ``` 
 
             - povolení modulu ssl (modul pro šifrovaná spojení - HTTPS)
             - v případě ssl je nutné zároveň povolit ssl stránky (stránky zobrazené přes HTTPS protokol), protože mají samostatnou konfiguraci, proto je nutné je povolit, k čemuž slouží příkaz:
 
             ```console
-            root@<your_computer_name>:~$ /usr/aesbin/a2ensite default-ssl
+            root@<your_computer_name>:~$ /usr/sbin/a2ensite default-ssl
             root@<your_computer_name>:~$ systemctl reload apache2
             ```
 
