@@ -1,6 +1,6 @@
 # Konfigurace služeb
 
-## LAMP (Linux, Apache, MariaDB (kdysi MySQL), PHP/Perl/Python) server
+- ## LAMP (Linux, Apache, MariaDB (kdysi MySQL), PHP/Perl/Python) server
     - umožňuje z jednoho serveru (jedné IP adresy) zprovoznit mnoho webových stránek
     ### Instalace
 
@@ -58,7 +58,7 @@
             - dalším modulem je userdir (opět k dispozici, ale neaktivní), který umožňuje jednotlivým uživatelům v systému zveřejnit vlastní webové stránky prostřednictvím aktuálního serveru (stejným způsobem je nakofigurován linedu)
 
 
-## NFS (Network File System) server
+- ## NFS (Network File System) server
     - systém pro sdílení adresářů mezi PC, kdy se adresáře fyzicky nacházejí na serveru, ale lze je vzdáleně namountovat (jako disk) na předem definovaných klientských PC (definice se realizuje prostřednictvím IP adres)
     - stejným způsobem probíhá sdílení školních domovských adresářů na učebnách
     ### Instalace
@@ -109,7 +109,7 @@
 
         -jedniné bezpečnostní opatření je realizováno přes IP adresy, proto je nutné aby serveru i klientském počítači měli uživatelé stejné ID uživatele i skupiny
 
-## DHCP server
+- ## DHCP server
     - PC je nutné připojit do sítě, která má ve virtualboxu zakázánou DHCP službu (dva DHCP servery nejsou šťastné řešení)
     ### Instalace
     
