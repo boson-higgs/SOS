@@ -167,7 +167,7 @@
                     - ```option broadcast-address``` - broadcast adresa sítě definované v ```subnet``` (standartně X.X.X.255)
                     - ```option routers``` - IP adresa, kterou zařízení, kterým se adresa poskytne, použijí jako výchozí bránu - standartně adresa serveru
                 - DNS server se nastavuje v položce ```option domain-name-servers``` (viz. výše)
-                - v ```subnet``` položce lze definovat i DNS server a všechny ostatní položky (např. ```default-lease-time```), server může spravovat mnoho ```subnet``` položek pro různé sítě i DNS
+                - v ```subnet``` položce lze definovat i DNS server a všechny ostatní položky (např. ```default-lease-time```), server může spravovat mnoho ```subnet``` položek pro různé sítě i DNS najednou
                 - lze použít globální konfiguraci nebo lokální konfiguraci
         - po změně konfigurace je opět nutné provést restart služby:
         ```console
