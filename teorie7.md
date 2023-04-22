@@ -23,8 +23,7 @@
 
         - tento příkaz doinstaluje a aktivuje k apache serveru MariaDB modul (databáze)
         - i navzdory tomu, že se balík nazývá default-mysql-server, nainstaluje se MariaDB (MySQL již není nativně podporován)   
-        - konfigurace a zacházení s tímto modulem (s databází) se nachází na [webové stránce](http://seidl.cs.vsb.cz/wiki2/index.php/SOS) (osmá přednáška) a na videu:
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/672DyTiauWc?start=1414" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        - konfigurace a zacházení s tímto modulem (s databází) se nachází na [webové stránce](http://seidl.cs.vsb.cz/wiki2/index.php/SOS) (osmá přednáška) a [na videu (včetně instalace softwaru MediaWiki)](https://www.youtube.com/embed/672DyTiauWc?start=1414)
         - #### Restart apache serveru
 
             ```console
