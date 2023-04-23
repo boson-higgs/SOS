@@ -37,7 +37,7 @@
         ```console
         root@<your_computer_name>:~$ cat file1 > file2
         ```
-        - tento příkaz přesměruje výpis obsahu souboru (standartní výstup příkazi ```cat file1```) ```file1``` do souboru ```file2``` tím, že jím přepíše jeho obsah
+        - tento příkaz přesměruje výpis (standartní výstup příkazu ```cat file1```) obsahu souboru ```file1``` do souboru ```file2``` tím, že jím přepíše jeho obsah
         
         ```console
         root@<your_computer_name>:~$ cat file1 >> file2
