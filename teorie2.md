@@ -1,6 +1,6 @@
 # Skripty, programy a příkazový řádek v linuxu
 
-- Proměnná PATH
+- ## Proměnná PATH
     - obsahuje všechny cesty, ve kterých příkazový řadek hledá příslušný program (příkaz)
     - výpis proměnné ```PATH```:
 
@@ -31,5 +31,53 @@
             ```
             - tento příkaz **přiřadí** do proměnné ```PATH``` proměnnou ```PATH``` + složku ```/sbin``` (pro přidání této složky do proměnné ```PATH``` i opětovném zapnutí PC je nutné přidat výše uvedený příkaz do souboru ```.bashrc```)
 
-16:00
+- ## Standartní vstup, výstup a chybový výstup
+    - základem všeho jsou příkazy v příkazovém řádku: [zdroj-1](https://www.digitalocean.com/community/tutorials/linux-commands), [zdroj-2](https://www.hostinger.com/tutorials/linux-commands)
+    - přesměrování standartního výstupu:
+        ```console
+        root@<your_computer_name>:~$ cat file1 > file2
+        ```
+        - tento příkaz přesměruje výpis obsahu souboru ```file1``` do souboru ```file2``` tím, že jím přepíše jeho obsah
         
+        ```console
+        root@<your_computer_name>:~$ cat file1 >> file2
+        ```
+        - tento příkaz přesměruje výpis obsahu souboru ```file1``` do souboru ```file2``` tím, že jej přípíše na konec souboru
+
+        ```console
+        root@<your_computer_name>:~$ cat file1 >> file2
+        ```
+        - tento příkaz přesměruje výpis obsahu souboru ```file1``` do souboru ```file2``` tím, že jej přípíše na konec souboru
+
+        ```console
+        root@<your_computer_name>:~$ cat file1 | cut -d ' ' -f 2
+        ```
+        - tento příkaz přesměruje výpis obsahu souboru ```file1``` na standartní vstup programu ```cut```
+
+    - přesměrování standartního chybového výstupu:
+        ```console
+        root@<your_computer_name>:~$ mkdir /test 2> file
+        ```
+        - tento příkaz přesměruje výpis chybového hlášení tohot příkazu (pokud nastane) do souboru ```file```
+
+        ```console
+        root@<your_computer_name>:~$ mkdir /test 2> /dev/null
+        ```
+        - tento příkaz způsobí, že se neubdou vypisovat žádná chybová hlášení daného spuštění programu
+        - ```/dev/null``` je jakási černá díra - cokoli se do ní pošle je ztraceno
+
+        ```console
+        root@<your_computer_name>:~$ mkdir /test &> /dev/null
+        ```
+        - tento příkaz pošle standartní výstup i standartní chybový výstup do ```/dev/null```
+
+    - návratové kódy funkcí/příkazů/programů:
+        - návratové kódy informují o konečném stavu programu (proběhl v pořádku/skončil chybou)
+        - s návratovými kódy lze pracovat v konzoli:
+            ```console
+            root@<your_computer_name>:~$ mkdir /tmp/test && echo OK || echo KO
+            ```
+            - pokud příkaz proběhne v pořáadku vykoná se příkaz ```echo OK```, pokud příkaz skončí chybou provede se příkaz ```echo KO```
+
+- ## Bash
+    - programování v bashi - [zdroj-1](https://www.root.cz/clanky/programovani-v-bash-shellu/), [zdroj-2](https://www.cyberciti.biz/faq/bash-for-loop/)
