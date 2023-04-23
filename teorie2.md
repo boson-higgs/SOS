@@ -37,13 +37,8 @@
         ```console
         root@<your_computer_name>:~$ cat file1 > file2
         ```
-        - tento příkaz přesměruje výpis obsahu souboru ```file1``` do souboru ```file2``` tím, že jím přepíše jeho obsah
+        - tento příkaz přesměruje výpis obsahu souboru (standartní výstup příkazi ```cat file1```) ```file1``` do souboru ```file2``` tím, že jím přepíše jeho obsah
         
-        ```console
-        root@<your_computer_name>:~$ cat file1 >> file2
-        ```
-        - tento příkaz přesměruje výpis obsahu souboru ```file1``` do souboru ```file2``` tím, že jej přípíše na konec souboru
-
         ```console
         root@<your_computer_name>:~$ cat file1 >> file2
         ```
@@ -52,19 +47,19 @@
         ```console
         root@<your_computer_name>:~$ cat file1 | cut -d ' ' -f 2
         ```
-        - tento příkaz přesměruje výpis obsahu souboru ```file1``` na standartní vstup programu ```cut```
+        - tento příkaz přesměruje standartní výstup přílazu ```cat file1``` (výpis obsahu souboru ```file1```) na standartní vstup programu ```cut```
 
     - přesměrování standartního chybového výstupu:
         ```console
         root@<your_computer_name>:~$ mkdir /test 2> file
         ```
-        - tento příkaz přesměruje výpis chybového hlášení tohot příkazu (pokud nastane) do souboru ```file```
+        - tento příkaz přesměruje výpis chybového hlášení tohot příkazu (pokud nastane chyba) do souboru ```file```
 
         ```console
         root@<your_computer_name>:~$ mkdir /test 2> /dev/null
         ```
-        - tento příkaz způsobí, že se neubdou vypisovat žádná chybová hlášení daného spuštění programu
-        - ```/dev/null``` je jakási černá díra - cokoli se do ní pošle je ztraceno
+        - tento příkaz způsobí, že se nebudou vypisovat žádná chybová hlášení daného spuštění programu
+        - ```/dev/null``` je jakási černá díra - cokoli se do ní pošle, je ztraceno
 
         ```console
         root@<your_computer_name>:~$ mkdir /test &> /dev/null
