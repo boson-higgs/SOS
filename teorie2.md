@@ -1,5 +1,17 @@
 # Skripty, programy a příkazový řádek v linuxu
 
+- ## IDE:
+    - instalace MC commanderu a editoru:
+        ```console
+        root@<your_computer_name>:~$ apt install mc
+        ```
+    - tento příkaz nainstaluje Midnight Commander (MC), jehož součástí je také textový editor  ```mcedit```
+        ```console
+        root@<your_computer_name>:~$ export EDITOR=mcedit
+        ```
+    - tento příkaz nastaví textový editor MC ```mcedit``` jako defaultní textový editor systému 
+       
+
 - ## Proměnná PATH
     - obsahuje všechny cesty, ve kterých příkazový řadek hledá příslušný program (příkaz)
     - výpis proměnné ```PATH```:
