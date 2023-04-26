@@ -10,6 +10,12 @@
         root@<your_computer_name>:~$ export EDITOR=mcedit
         ```
     - tento příkaz nastaví textový editor MC ```mcedit``` jako defaultní textový editor systému 
+
+- ## IDE:
+    - je vhodné si doinstalovat manuálové stránky ```man```
+      ```console
+      root@<your_computer_name>:~$ apt install man
+      ```
        
 
 - ## Proměnná PATH
