@@ -66,9 +66,8 @@
 
 - # Cron
   - systém pro cyklické spouštění skriptů (příkazů)
+  - uživatelský a systémový
   - je výhodnější použít tento systém, než ```systemd```, který to taktéž umí
-  - jeho konfigurační soubor má umístění  ```/etc/crontab```
-  - formát záznamu je popsán v tomto souboru
+  - jeho konfigurační soubor (systémový  ```cron ```) má umístění  ```/etc/crontab```, ve kterém je popsán i jeho formát
   - je vhodné v sekci příkazů nejdřive otestovat, zda daný soubor obsahující skript existuje
-
-1:33:17
+  - konfigurační soubor uživatelského ```cron```u se otevírá příkazem  ```crontab -e``` a jeho skripty se spouští výlučně pod daným uživatelem (formát záznamu identický se systémovým ```cron```em výjma definice uživatele)
