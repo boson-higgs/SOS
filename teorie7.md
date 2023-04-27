@@ -8,7 +8,7 @@
         root@<your_computer_name>:~$ apt install apache2
         ```
 
-        - tento příkaz nainstaluje a spustí apache server (webový server)
+        - tento příkaz nainstaluje a spustí apache server (webový server) (kontrola lze provést skrz zadání IP adresy serveru do adresniho řádku prohlížeče)
 
         ```console
         root@<your_computer_name>:~$ apt install libapache2-mod-php
@@ -64,7 +64,7 @@
 
             - je nutné zároveň restartovat apache, což provádí druhý příkaz (tentokrát pomocí systemctl)
 
-            - dalším modulem je userdir (opět k dispozici, ale neaktivní), který umožňuje jednotlivým uživatelům v systému zveřejnit vlastní webové stránky prostřednictvím aktuálního serveru (stejným způsobem je nakofigurován linedu)
+            - dalším modulem je userdir (opět k dispozici, ale neaktivní), který umožňuje jednotlivým uživatelům v systému zveřejnit vlastní webové stránky prostřednictvím aktuálního serveru (stejným způsobem je nakofigurován linedu), každý uživatel může zveřejnit svou webovou stránku skrz složku ```public_html```
 
 
 - ## NFS (Network File System) server
