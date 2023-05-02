@@ -76,4 +76,13 @@
       - používá se v kombinaci s ostatními RAIDy pro navýšení kapacity
 
   - ### RAIDy v GNU/Linux
-    - pro práci s RAIDy slouží utilitka ``````
+    - pro práci s RAIDy slouží utilitka ```mdadm```:
+      ```console
+      root@<your_computer_name>:~$ apt install mdadm
+      ```
+      - tento příkaz nainstaluje utilitku ```mdadm```
+      ```console
+      root@<your_computer_name>:~$ mdadm 
+      ```
+      - tento příkaz nainstaluje utilitku ```mdadm```
+     
