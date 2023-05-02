@@ -103,5 +103,5 @@
         ```console
         root@<your_computer_name>:~$ mdadm --manage /dev/md0 --set-faulty /dev/sdd
         ```
-        - tento příkaz v RAIDu ```/dev/md0``` označí disk ```/dev/sdd``` jako poškozený
+        - tento příkaz v RAIDu ```/dev/md0``` označí disk ```/dev/sdd``` jako poškozený, a protože se jedná RAID obsahující spare disk, měl by tento příkaz způsobit odpojení „poškozeného“ (tento příkaz jej pouze tak ozačí) primárního disku a následné okamžité připojení (záložního) spare disku, který se tak stane primárním diskem
      
