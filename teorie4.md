@@ -85,6 +85,7 @@
       root@<your_computer_name>:~$ apt install mdadm
       ```
       - tento příkaz nainstaluje utilitku ```mdadm```
+      - zároveň vytvoří konfigurační soubor  ```/proc/mdstat```, do kterého ```mdadm``` promítá informace o vytvořených RAIDech
       ```console
       root@<your_computer_name>:~$ mdadm --create /dev/md0 --level=1 --raid-devices=2 /dev/sdc /dev/sdd --spare-devices=1 /dev/sde
       ```
@@ -108,4 +109,8 @@
         root@<your_computer_name>:~$ mdadm --manage /dev/md0 --set-faulty /dev/sdd
         ```
         - tento příkaz v RAIDu ```/dev/md0``` označí disk ```/dev/sdd``` jako poškozený, a protože se jedná RAID obsahující spare disk, měl by tento příkaz způsobit odpojení „poškozeného“ (tento příkaz jej pouze tak ozačí) primárního disku a následné okamžité připojení (záložního) spare disku, který se tak stane primárním diskem
-     
+        - pro kontrolu lze použít příkaz ```watch```:
+          ```console
+          root@<your_computer_name>:~$ watch -n 0 "cat /proc/mdstat"
+          ```
+          - tento příkaz bude cyklicky spouštět příkaz ```cat /proc/mdstat```, čímž se bude kontrolovat stav daného RAIDu (je vhodné jej spustit v nové konzoli)
