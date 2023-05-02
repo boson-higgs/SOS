@@ -54,7 +54,7 @@
         ```console
         root@<your_computer_name>:~$ systemctl daemon-reload
         ```
-        - tento příkaz aktualizuje ```daemon``` ```systemd``` (aktualizuje storm závislostí, ...), vhodné zadat vždy při změně či vytvoření jednotky
+        - tento příkaz aktualizuje ```daemon``` ```systemd``` (aktualizuje strom závislostí, ...), vhodné zadat vždy při změně či vytvoření jednotky
         ```console
         root@<your_computer_name>:~$ systemctl enable test1
         ```
