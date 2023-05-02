@@ -82,7 +82,7 @@
       ```
       - tento příkaz nainstaluje utilitku ```mdadm```
       ```console
-      root@<your_computer_name>:~$ mdadm 
+      root@<your_computer_name>:~$ mdadm --create /dev/md0 --level=1 --raid-devices=2 /dev/sdc /dev/sdd --spare-devices=1 /dev/sde
       ```
       - tento příkaz nainstaluje utilitku ```mdadm```
      
