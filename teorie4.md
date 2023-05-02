@@ -123,3 +123,6 @@
         - následně by se disk fyzicky vyměnil za nový
         - druhý příkaz přidá nový disk (v tomto případě ```/dev/sdd```) - nový disk bude přidán jako spare disk
       - pro automatické mountování RAIDu po startu PC je nutné tento RAID ve ```fstabu```u definovat pomocí jeho UUID!
+      - 
+## LVM (nebude na ZT)
+- odkaz na článek ze serveru [Root](https://www.root.cz/clanky/uvod-do-lvm/#ic=articles-related&icc=lvm-prakticke-ukazky-17056)
