@@ -37,10 +37,10 @@
     ```
     - formát záznamu konfigurační soubour, kde:
       - ```<file system>``` - disk (oddíl/oblast), která se bude mountovat - lze specifikovat názvem (např. ```/dev/sda```) nebo ```UUID``` (např. ```UUID=<číslo s pomlčkami>```), ```UUID``` je preferováno (narozdíl od názvu, které se odvíjí od pořadí připojení disku k řadiči, které se může měnit), ```UUID``` příslušného disku či oddílu lze zjistit příkazem ```blkid```
-      - ```<mount point>``` - místo, kam se disk specifikovaný ve ```<file system>``` namountuje (např. ```/mnt```)
-      - ```<type>``` - souborový systém disku (např. ```ext4```)
-      - ```<options>``` - parametry (např. ```ro``` - disk je určen pouze pro čtení), standartně ```defaults```
-      - ```<dump>``` a ```<pass>``` - dány historicky, týkaly se zálohování, standartně se udává hodnota ```0   0``` (pro oba ```0```), u root file systému (první záznam souboru) ```0    1```
+      - ```<mount point>``` určuje místo, kam se disk specifikovaný ve ```<file system>``` namountuje (např. ```/mnt```)
+      - ```<type>``` určuje souborový systém disku (např. ```ext4```)
+      - ```<options>``` definuje parametry (např. ```ro``` - disk je určen pouze pro čtení), standartně ```defaults```
+      - ```<dump>``` a ```<pass>``` mají historický význam, týkaly se zálohování, standartně se udává hodnota ```0   0``` (pro oba ```0```), u root file systému (první záznam souboru) ```0    1```
   ```console
   root@<your_computer_name>:~$ mount -a
   ```
@@ -69,7 +69,7 @@
     - RAID 6
       - prakticky se jedná o rozšíření RAIDu 5, kdy checksumy jsou dva
       - odolný proti výpadku dvou disků 
-      - velikost (kapacita): (N * S) - (2 * S), kde N = počet disků v RAIDu; S = velikost jednoho disku, např. požadují se tři 1TB disky (celkově 3TB) => přidání dvou dalších 2TB disků = 3TB místa (celkově pět 1TB disků: (5 * 1TB) - (2 * 1TB) = 3TB, kde N = 5; S = 1TB)
+      - velikost (kapacita): (N * S) - (2 * S), kde N = počet disků v RAIDu; S = velikost jednoho disku, např. požadují se tři 1TB disky (celkově 3TB) => přidání dvou dalších 1TB disků = 3TB místa (celkově pět 1TB disků: (5 * 1TB) - (2 * 1TB) = 3TB, kde N = 5; S = 1TB)
     - RAID 0
       - není odolný proti výpadku disku
       - pouze serializuje disky
@@ -84,5 +84,8 @@
       ```console
       root@<your_computer_name>:~$ mdadm --create /dev/md0 --level=1 --raid-devices=2 /dev/sdc /dev/sdd --spare-devices=1 /dev/sde
       ```
-      - tento příkaz nainstaluje utilitku ```mdadm```
+      - tento příkaz vytvoří nový RAID, kde:
+        - ```--create``` vytvoří nový RAID (v tomto případě ```/dev/md0```)
+        - ```--level``` určuje příslušný typ (označení) RAIDu (v tomto případě ```1```, tzn. RAID 1)
+        - ```--raid-devices``` určuje celkový počet disků v RAIDu (bez spare disků) následující cestami (názvy) jednotlivých disků, které mají tvořit daný RAID (v tomto případě ```/dev/sdc``` a ```/dev/sdd```) oddělené mezerami
      
