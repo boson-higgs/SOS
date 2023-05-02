@@ -54,7 +54,7 @@
     - RAID 1
       - obsahuje dva disky (klidně více 4, 6, 8, ...)
       - prinicpiálně velmi jednoduchý - co se zapíše na první disk, se zapíše taktéž na druhý disk (z tohoto důvodu se také někdy tomuto ozančení RAIDu přezdívá zrcadlení)
-      - velikost (kapacita): (N * S) / 2, kde N = počet disků v RAIDu; S = velikost jednoho disku, např. požaduje se 1TB disk (celkově 1TB místa) => přidání druhého 1TB disku („zrcadla“) = v RAIDu 1 stále 1TB místa (celkově dva 1TB disky: (2 * 1TB) / 2 = 1TB, kde N = 2; S = 1TB)
+      - velikost (kapacita): (N * S) / 2, kde N = počet disků v RAIDu; S = velikost jednoho disku, např. požaduje se 1TB disk (celkově 1TB místa) => přidání druhého 1TB disku („zrcadla“) = 1TB místa (celkově dva 1TB disky: (2 * 1TB) / 2 = 1TB, kde N = 2; S = 1TB)
       - neefektivní z hlediska místa, ale navyšuje rychlost čtení (paralelně z obou disků - na každém z různých sektorů), při čtení se musí data zapsat na oba disky)
       - pokud nějaký disk havaruje označí se jako špatný a ostatní budou fungovat
     - RAID 5
@@ -62,7 +62,9 @@
       - minimální počet disků jsou tři (a více 4, 5, 6, ...)
       - princip - data se zapisují po blocích, jeden blok na první disk, druhý na druhý disk, ... a na poslední je zaznamenám tzv. checksum - číslo, na základě kterého je možné dopočítat příslušný blok jednoho špatného (zhavarovaného) disku, pro každý blok se pokaždé pro checksum určí jiný disk z RAIDu (pokud se pro všechny bloky pro checksum určí jeden disk, který by zhavaroval, nelze provést obnovu)
       - odolný proti výpadku jednoho disku
-      - velikost (kapacita): (N * S) - (1 * S), kde N = počet disků v RAIDu; S = velikost jednoho disku, např. požadují se tři 1TB disky (celkově 3TB) => přidání jednoho dalšího 1TB disku = v RAIDu 5 3TB místa (celkově čtyři 1TB disky: (4 * 1TB) - (1 * 1TB) = 3TB, kde N = 4; S = 1TB)
+      - velikost (kapacita): (N * S) - (1 * S), kde N = počet disků v RAIDu; S = velikost jednoho disku, např. požadují se tři 1TB disky (celkově 3TB) => přidání jednoho dalšího 1TB disku = 3TB místa (celkově čtyři 1TB disky: (4 * 1TB) - (1 * 1TB) = 3TB, kde N = 4; S = 1TB)
       - z hlediska místa efektivní, z hlediska čtení efektivní (jednotlivé bloky se mohou zapisovat paralelně), z hlediska čtení opět velmi efektivní (stejně jako u zápisu)
-     - RAID 6
-      - prakticky se jedná o rozšíření RAIDu 5, kdy checksumy jsou dva
+    - RAID 6
+       - prakticky se jedná o rozšíření RAIDu 5, kdy checksumy jsou dva
+       - odolný proti výpadku dvou disků 
+       - velikost (kapacita): (N * S) - (2 * S), kde N = počet disků v RAIDu; S = velikost jednoho disku, např. požadují se tři 1TB disky (celkově 3TB) => přidání dvou dalších 2TB disků = 3TB místa (celkově pět 1TB disků: (5 * 1TB) - (2 * 1TB) = 3TB, kde N = 5; S = 1TB)
