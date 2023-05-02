@@ -81,20 +81,20 @@
 
   - ### RAIDy v GNU/Linux
     - pro práci s RAIDy slouží utilitka ```mdadm```:
-      ```console
-      root@<your_computer_name>:~$ apt install mdadm
-      ```
-      - tento příkaz nainstaluje utilitku ```mdadm```
-      - zároveň vytvoří konfigurační soubor  ```/proc/mdstat```, do kterého ```mdadm``` promítá informace o vytvořených RAIDech
-      ```console
-      root@<your_computer_name>:~$ mdadm --create /dev/md0 --level=1 --raid-devices=2 /dev/sdc /dev/sdd --spare-devices=1 /dev/sde
-      ```
-      - tento příkaz vytvoří nový RAID, kde:
-        - ```--create``` vytvoří nový RAID (v tomto případě ```/dev/md0```)
-        - ```--level``` určuje příslušný typ (označení) RAIDu (v tomto případě ```1```, tzn. RAID 1)
-        - ```--raid-devices``` určuje celkový počet disků v RAIDu (bez spare disků) následující cestami (názvy) jednotlivých disků, které mají tvořit daný RAID (v tomto případě ```/dev/sdc``` a ```/dev/sdd```), oddělené mezerami
-        - ```--spare-devices``` určuje počet spare disků v RAIDu následující cestami (názvy) jednotlivých disků, které mají tvořit spare disky daného RAIDu (v tomto případě pouze ```/dev/sde```), oddělené mezerami
-        - RAID se vytvoří jako zařízení ```/dev/md0```, to znamená, že s ním bude zacházeno jako s diskem
+        ```console
+        root@<your_computer_name>:~$ apt install mdadm
+        ```
+        - tento příkaz nainstaluje utilitku ```mdadm```
+        - zároveň vytvoří konfigurační soubor  ```/proc/mdstat```, do kterého ```mdadm``` promítá informace o vytvořených RAIDech
+        ```console
+        root@<your_computer_name>:~$ mdadm --create /dev/md0 --level=1 --raid-devices=2 /dev/sdc /dev/sdd --spare-devices=1 /dev/sde
+        ```
+        - tento příkaz vytvoří nový RAID, kde:
+          - ```--create``` vytvoří nový RAID (v tomto případě ```/dev/md0```)
+          - ```--level``` určuje příslušný typ (označení) RAIDu (v tomto případě ```1```, tzn. RAID 1)
+          - ```--raid-devices``` určuje celkový počet disků v RAIDu (bez spare disků) následující cestami (názvy) jednotlivých disků, které mají tvořit daný RAID (v tomto případě ```/dev/sdc``` a ```/dev/sdd```), oddělené mezerami
+          - ```--spare-devices``` určuje počet spare disků v RAIDu následující cestami (názvy) jednotlivých disků, které mají tvořit spare disky daného RAIDu (v tomto případě pouze ```/dev/sde```), oddělené mezerami
+          - RAID se vytvoří jako zařízení ```/dev/md0```, to znamená, že s ním bude zacházeno jako s diskem
       - protože se s RAIDem zachází jako s nově připojeným diskem, bude nutné jej naformátovat a namountovat:
         ```console
         root@<your_computer_name>:~$ mkfs.ext4 /dev/md0
@@ -109,8 +109,17 @@
         root@<your_computer_name>:~$ mdadm --manage /dev/md0 --set-faulty /dev/sdd
         ```
         - tento příkaz v RAIDu ```/dev/md0``` označí disk ```/dev/sdd``` jako poškozený, a protože se jedná RAID obsahující spare disk, měl by tento příkaz způsobit odpojení „poškozeného“ (tento příkaz jej pouze tak ozačí) primárního disku a následné okamžité připojení (záložního) spare disku, který se tak stane primárním diskem
-        - pro kontrolu lze použít příkaz ```watch```:
-          ```console
-          root@<your_computer_name>:~$ watch -n 0 "cat /proc/mdstat"
-          ```
-          - tento příkaz bude cyklicky spouštět příkaz ```cat /proc/mdstat```, čímž se bude kontrolovat stav daného RAIDu (je vhodné jej spustit v nové konzoli) 
+      - pro kontrolu lze použít příkaz ```watch```:
+        ```console
+        root@<your_computer_name>:~$ watch -n 0 "cat /proc/mdstat"
+        ```
+        - tento příkaz bude cyklicky spouštět příkaz ```cat /proc/mdstat```, čímž se bude kontrolovat stav daného RAIDu (je vhodné jej spustit v nové konzoli)
+      - pro výměnu disků poškozeného disku za nový se musí vykonat následující příkazy:
+        ```console
+        root@<your_computer_name>:~$ mdadm --manage /dev/md0 --remove /dev/sdd
+        root@<your_computer_name>:~$ mdadm --manage /dev/md0 --add /dev/sdd
+        ```
+        - první příkaz odebere poškozený disk (v tomto případě ```/dev/sdd```)
+        - následně by se disk fyzicky vyměnil za nový
+        - druhý příkaz přidá nový disk (v tomto případě ```/dev/sdd```) - nový disk bude přidán jako spare disk
+      - pro automatické mountování RAIDu po startu PC je nutné tento RAID ve ```fstabu```u definovat pomocí jeho UUID!
