@@ -125,4 +125,8 @@
       - pro automatické mountování RAIDu po startu PC je nutné tento RAID ve ```fstabu```u definovat pomocí jeho UUID!
       - 
 ## LVM (nebude na ZT)
+- technologie zjednodušující práci s diskovými oddíly
+- umožňuje přídávání disků za běhu systému
+- velmi oblíbené na serverech
+- založen na vytváření tzv. grupy
 - odkaz na článek ze serveru [Root](https://www.root.cz/clanky/uvod-do-lvm/#ic=articles-related&icc=lvm-prakticke-ukazky-17056)
