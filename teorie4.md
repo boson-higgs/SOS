@@ -89,4 +89,14 @@
         - ```--level``` určuje příslušný typ (označení) RAIDu (v tomto případě ```1```, tzn. RAID 1)
         - ```--raid-devices``` určuje celkový počet disků v RAIDu (bez spare disků) následující cestami (názvy) jednotlivých disků, které mají tvořit daný RAID (v tomto případě ```/dev/sdc``` a ```/dev/sdd```), oddělené mezerami
         - ```--spare-devices``` určuje počet spare disků v RAIDu následující cestami (názvy) jednotlivých disků, které mají tvořit spare disky daného RAIDu (v tomto případě ```/dev/sde```), oddělené mezerami
+        - RAID se vytvoří jako zařízení ```/dev/md0```, to znamená, že s ním bude zacházeno jako s diskem
+      - protože se s RAIDem zachází jako s nově připojeným diskem, bude nutné jej naformátovat a namountovat:
+        ```console
+        root@<your_computer_name>:~$ mkfs.ext4 /dev/md0
+        ```
+        - tento příkaz naformátuje zařízení ```/dev/md0``` (výše vytvořený RAID)
+        ```console
+        root@<your_computer_name>:~$ mount /dev/md0 /mnt
+        ```
+        - tento příkaz namountuje zařízení ```/dev/md0``` (výše vytvořený RAID) do složky /mnt
      
