@@ -41,7 +41,7 @@
       - ```<type>``` - souborový systém disku (např. ```ext4```)
       - ```<options>``` - parametry (např. ```ro``` - disk je určen pouze pro čtení), standartně ```defaults```
       - ```<dump>``` a ```<pass>``` - dány historicky, týkaly se zálohování, standartně se udává hodnota ```0   0``` (pro oba ```0```), u root file systému (první záznam souboru) ```0    1```
-   ```console
+  ```console
   root@<your_computer_name>:~$ mount -a
   ```
   - tento příkaz namountuje všechny disky uvedeny v souboru ```fstab```
@@ -74,3 +74,6 @@
       - není odolný proti výpadku disku
       - pouze serializuje disky
       - používá se v kombinaci s ostatními RAIDy pro navýšení kapacity
+
+  - ### RAIDy v GNU/Linux
+    - pro práci s RAIDy slouží utilitka ``````
