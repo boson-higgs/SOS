@@ -2,9 +2,9 @@
 - je nutné mít více, než jeden disk (přidat jich více)
 - v Linuxu je jednotný souborový systém - jednotlivé adresáře souborového systému jsou připojovány (svázány) k daným diskům (vazba disk -> adresář)
 - seznam disků připojených k PC se nachází ve složce ```/dev``` (stejně jako ostatní HW, atd...), kdy ```sd<písmeno>``` (např. ```sda```) označuje disk a ```sd<písmeno><číslo>``` pak oddíl disku (partition) (např. ```sda1```)
-- aby bylo možné nějaký disk využívat je nutné vytvořit tabulku oblastí (oddílů) (nemusí se provadět - volitelné) a následně tento disk namountovat
+- aby bylo možné nějaký disk využívat je nutné vytvořit tabulku oblastí (oddílů) (nemusí se provadět - volitelné), naformátovat a následně tento disk namountovat
 - utilitka ```cfdisk``` slouží k vytvoření oblastí (tabulky oblastí) na disku (např. ```cfdisk /dev/sdb```)
-- stále však není tato oblast naformátovaná (není v ní vytvořený souborový systém)
+- stále však není tato oblast naformátovaná (není v ní vytvořený souborový systém) (pokud se neprovede rozdělení disku, je nutné naformátovat celý disk)
 - souborových systému existuje nepřeberné množství, v současnosti je nejrozšířenější souborový systém ```ext4```, neboť je velmi výkonný v mnoha aspektech (parametrech)
 - pro naformátování se používá utilitka ```mkfs```
   ```console
@@ -65,6 +65,10 @@
       - velikost (kapacita): (N * S) - (1 * S), kde N = počet disků v RAIDu; S = velikost jednoho disku, např. požadují se tři 1TB disky (celkově 3TB) => přidání jednoho dalšího 1TB disku = 3TB místa (celkově čtyři 1TB disky: (4 * 1TB) - (1 * 1TB) = 3TB, kde N = 4; S = 1TB)
       - z hlediska místa efektivní, z hlediska čtení efektivní (jednotlivé bloky se mohou zapisovat paralelně), z hlediska čtení opět velmi efektivní (stejně jako u zápisu)
     - RAID 6
-       - prakticky se jedná o rozšíření RAIDu 5, kdy checksumy jsou dva
-       - odolný proti výpadku dvou disků 
-       - velikost (kapacita): (N * S) - (2 * S), kde N = počet disků v RAIDu; S = velikost jednoho disku, např. požadují se tři 1TB disky (celkově 3TB) => přidání dvou dalších 2TB disků = 3TB místa (celkově pět 1TB disků: (5 * 1TB) - (2 * 1TB) = 3TB, kde N = 5; S = 1TB)
+      - prakticky se jedná o rozšíření RAIDu 5, kdy checksumy jsou dva
+      - odolný proti výpadku dvou disků 
+      - velikost (kapacita): (N * S) - (2 * S), kde N = počet disků v RAIDu; S = velikost jednoho disku, např. požadují se tři 1TB disky (celkově 3TB) => přidání dvou dalších 2TB disků = 3TB místa (celkově pět 1TB disků: (5 * 1TB) - (2 * 1TB) = 3TB, kde N = 5; S = 1TB)
+    - RAID 0
+      - není odolný proti výpadku disku
+      - pouze serializuje disky
+      - používá se v kombinaci s ostatními RAIDy pro navýšení kapacity
