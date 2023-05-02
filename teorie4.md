@@ -49,7 +49,9 @@
 - ## RAID
   - odkaz na [wikipedii](https://cs.wikipedia.org/wiki/RAID) (jsou tam obrázky)
   - technologie, sloužící k ochraně dat proti vypadku disku
+  - může být hardwarová (např. produkční servery) nebo softwarová (např. osobní NAS - Network Attached Storage)
   - nejedná se o zálohu, pouze chrání data proti chybě, výpadku, závadě nějákého disku
+  - jednotlivé RAIDy se dají kombinovat
   - několik označení (typů) RAIDů:
     - RAID 1
       - obsahuje dva disky (klidně více 4, 6, 8, ...)
