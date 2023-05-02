@@ -113,4 +113,4 @@
           ```console
           root@<your_computer_name>:~$ watch -n 0 "cat /proc/mdstat"
           ```
-          - tento příkaz bude cyklicky spouštět příkaz ```cat /proc/mdstat```, čímž se bude kontrolovat stav daného RAIDu (je vhodné jej spustit v nové konzoli)
+          - tento příkaz bude cyklicky spouštět příkaz ```cat /proc/mdstat```, čímž se bude kontrolovat stav daného RAIDu (je vhodné jej spustit v nové konzoli) 
