@@ -74,6 +74,10 @@
       - není odolný proti výpadku disku
       - pouze serializuje disky
       - používá se v kombinaci s ostatními RAIDy pro navýšení kapacity
+  - ### Spare disk
+    - „horká“ záloha
+    - pokud selže jeden z primárních disků, je tento disk okamžitě automaticky odpojen a místo něj se automaticky připojí záložní spare disk, který se tím stává primárním diskem
+    - spare disku lze připojit více
 
   - ### RAIDy v GNU/Linux
     - pro práci s RAIDy slouží utilitka ```mdadm```:
