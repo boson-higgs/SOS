@@ -88,7 +88,7 @@
         - ```--create``` vytvoří nový RAID (v tomto případě ```/dev/md0```)
         - ```--level``` určuje příslušný typ (označení) RAIDu (v tomto případě ```1```, tzn. RAID 1)
         - ```--raid-devices``` určuje celkový počet disků v RAIDu (bez spare disků) následující cestami (názvy) jednotlivých disků, které mají tvořit daný RAID (v tomto případě ```/dev/sdc``` a ```/dev/sdd```), oddělené mezerami
-        - ```--spare-devices``` určuje počet spare disků v RAIDu následující cestami (názvy) jednotlivých disků, které mají tvořit spare disky daného RAIDu (v tomto případě ```/dev/sde```), oddělené mezerami
+        - ```--spare-devices``` určuje počet spare disků v RAIDu následující cestami (názvy) jednotlivých disků, které mají tvořit spare disky daného RAIDu (v tomto případě pouze ```/dev/sde```), oddělené mezerami
         - RAID se vytvoří jako zařízení ```/dev/md0```, to znamená, že s ním bude zacházeno jako s diskem
       - protože se s RAIDem zachází jako s nově připojeným diskem, bude nutné jej naformátovat a namountovat:
         ```console
@@ -99,4 +99,9 @@
         root@<your_computer_name>:~$ mount /dev/md0 /mnt
         ```
         - tento příkaz namountuje zařízení ```/dev/md0``` (výše vytvořený RAID) do složky /mnt
+      - jeden disk z RAIDu lze záměrně (uměle) poškodit (označit jako pošokžený/faulty) v rámci testování RAIDu:
+        ```console
+        root@<your_computer_name>:~$ mdadm --manage /dev/md0 --set-faulty /dev/sdd
+        ```
+        - tento příkaz v RAIDu ```/dev/md0``` označí disk ```/dev/sdd``` jako poškozený
      
