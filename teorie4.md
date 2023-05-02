@@ -28,7 +28,7 @@
   ```
   - tento příkaz namountuje disk (oblast) ```sdb1``` do adresáře ```/mnt```
   - v dané složce (v tomto případě ```/mnt```) by se měl vytvořit adresář ```lost+found``` (známka toho, že se jedná o namountovaný adresář)
-- pro rozvázání adresáře s diskem se používá příkaz ```unmount```, kde se jako parametr může použít daná složka (ve výše zmíněném případě ```/mnt```) nebo název disku (oblasti) (v příkladě ```/dev/sdb1```) - tímto způsobem lze dokázat, že se něco opravdu zapsalo na disk (po odmountování to něco již nebude k dispozici)
+- pro rozvázání adresáře s diskem se používá příkaz ```umount```, kde se jako parametr může použít daná složka (ve výše zmíněném případě ```/mnt```) nebo název disku (oblasti) (v příkladě ```/dev/sdb1```) - tímto způsobem lze dokázat, že se něco opravdu zapsalo na disk (po odmountování to něco již nebude k dispozici)
 - ## fstab
   - konfigurační soubor specifikující defaultní (po startu (bootu) PC) konfiguraci disků či oblastí (jejich mountování) jako takových - aby se disky či oddíly namountovaly automaticky po startu PC
   - nachází se v ```/etc/fstab```
