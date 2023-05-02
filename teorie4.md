@@ -67,7 +67,7 @@
       - velikost (kapacita): (N * S) - (1 * S), kde N = počet disků v RAIDu; S = velikost jednoho disku, např. požadují se tři 1TB disky (celkově 3TB) => přidání jednoho dalšího 1TB disku = 3TB místa (celkově čtyři 1TB disky: (4 * 1TB) - (1 * 1TB) = 3TB, kde N = 4; S = 1TB)
       - z hlediska místa efektivní, z hlediska čtení efektivní (jednotlivé bloky se mohou zapisovat paralelně), z hlediska čtení opět velmi efektivní (stejně jako u zápisu)
     - RAID 6
-      - prakticky se jedná o rozšíření RAIDu 5, kdy checksumy jsou dva
+      - prakticky se jedná o rozšíření RAIDu 5, kdy checksumy jsou dva a jsou nutné minimálně 4 disky
       - odolný proti výpadku dvou disků 
       - velikost (kapacita): (N * S) - (2 * S), kde N = počet disků v RAIDu; S = velikost jednoho disku, např. požadují se tři 1TB disky (celkově 3TB) => přidání dvou dalších 1TB disků = 3TB místa (celkově pět 1TB disků: (5 * 1TB) - (2 * 1TB) = 3TB, kde N = 5; S = 1TB)
     - RAID 0
