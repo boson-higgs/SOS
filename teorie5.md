@@ -164,7 +164,7 @@
       ```
         - prvním příkazem lze nastavit defaultní čas odkladu
         - druhým příkazem lze nastavit čas odkladu konkrétnímu uživateli
-      - pokud je požadavek na aktivaci kvót při bootu OS (startu PC), je nutné ve ```fstab```u u parametrů za hodnotu ```defaults``` (oddělené čárkami) uvést i parametry ```usrquota``` a ```grpquota```
-      - kvóty lze definovat i pro skupiny
+     - pokud je požadavek na aktivaci kvót při bootu OS (startu PC), je nutné ve ```fstab```u u parametrů za hodnotu ```defaults``` (oddělené čárkami) uvést i parametry ```usrquota``` a ```grpquota```
+     - kvóty lze definovat i pro skupiny
    
       
