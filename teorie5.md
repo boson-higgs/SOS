@@ -91,9 +91,23 @@
     ```console
     root@<your_computer_name>:~$ chmod g+w test_prav
     ```
-    - tento příkaz přídá skupině oprávnění zápisu (```w```)
-    - ```chmod <kdo><jak><co> <název soubour/adresáře>```
-    - ```<kdo>``` - ```u```(uživatel - vlastník)/```g```(skupina - vlastník)/```o```(ostatní)
-    - ```<jak>``` - ```+```(přidávání)/```-```(ubírání)
-    - ```<co>``` - ```r```(čtení)/```w```(zápis)/```x```(spuštění)
-    - změna práv adresáře neplatí zároveň na jeho obsah (rekurze), to lze změnit přepínačem ```-R``` 
+      - tento příkaz přídá skupině oprávnění zápisu (```w```)
+      - ```chmod <kdo><jak><co> <název soubour/adresáře>```
+      - ```<kdo>``` - ```u```(uživatel - vlastník)/```g```(skupina - vlastník)/```o```(ostatní)
+      - ```<jak>``` - ```+```(přidávání)/```-```(ubírání)
+      - ```<co>``` - ```r```(čtení)/```w```(zápis)/```x```(spuštění)
+      - změna práv adresáře neplatí zároveň na jeho obsah (rekurze), to lze změnit přepínačem ```-R```
+      - práva lze vyjádřit jako decimální součet binárního vyjádření v rámci jednotlivých trojic:
+        ```console
+        root@<your_computer_name>:~$ chmod 777 test_prav
+        ```
+        - přídá všechna práva všem
+    - ### Rozšířená práva (s/t bit)
+      - blíže specifikují či upravují výše zmíněná práva
+      - #### t bit
+        - specifikuje ```x``` bit
+        - pokud je nastaven, znamená to, že v daném adresáři smí uživatel manipulovat (mazat) pouze vlastní soubory (či podadresáře)
+      - #### s bit
+        - specifikuje ```x``` bit
+        - pokud je nastaven, tak jakémukoli souboru (či podadresáři) vytvořeném v tomto adresáři, bude nastaven vlastník tohoto adresáře (podle toho, ve které z trojic se ```s``` bit nachází, např. pokud se v adresáři s právy ```drwxrws---``` vytvoří soubor, pak tomuto souboru budou nastavena práva nikoli skupiny toho, kdo soubor vytvořil, ale skupiny (vlastníka) daného adresáře s ```s``` bitem)
+        - standartně se programy spouští s oprávněním toho, kdo jej spustil (spuštěný program může to, co může ten, kdo jej spustil), pokud však je u tohoto programu nastaven ```s``` bit u uživatele (vlastníka), program se spustí s právy tohoto uživatele (vlastníka) (nikoli s právy toho, kdo jej spustil), proto obecně nikdy nenastavovat ```s``` bit u uživatele (vlastníka), a už vůbec nikdy u souborů (programů), které vlastní root!
