@@ -118,6 +118,9 @@
     - vázané na konkrétní svazek (disk) (jiné kvóty na jiných discích)
     - způsob jakým uživatelům zabránit přehlcení disku
     - standartně se kvóty pro uživatele definují na novém disku (namountovém do adresáře ```/home```)
+    - dělí se na:
+      - kvótu měkkou (soft) - lze překročit, slouží jako indikátor, že se uživatel blíží k maximálnímu zaplnění své kvóty (která nelze překročit)
+      - pevnou (hard) - nelze překročit
     - pro práci s kvótami se využívá utilitka ```qouta```:
       ```console
       root@<your_computer_name>:~$ apt install quota
@@ -131,8 +134,8 @@
       ```
         - první příkaz přemountuje (změní parametry mountpointu), kdy přídá parametry ```usrquota``` a ```grpquota```
         - druhý příkaz nastartujte (spustí) službu pracující s kvótami
-        - třetí příkaz slouží k ověření, zda jsou na svazku (disku) kvóty podporovány
-        - čtvrtý příkaz zapne kvóty na daném svazku
+        - třetí příkaz slouží k ověření, zda jsou na svazku (disku) kvóty podporovány (v tomto případě na svazku ```/dev/sdb1```)
+        - čtvrtý příkaz zapne kvóty na daném svazku (v tomto případě na svazku ```/dev/sdb1```)
       ```console
       root@<your_computer_name>:~$ edquota franta
       ```
@@ -141,4 +144,9 @@
       root@<your_computer_name>:~$ quota franta
       ```
         - tento příkaz zobrazí nastavení kvóty uživatele franta
+       ```console
+      root@<your_computer_name>:~$ dd if=/dev/zero of=nuly bs=1k count=1000
+      ```
+        - tento příkaz vytvoří soubour o počtu 1000 bloků, kdy jeden blok má velikost 1kB (celkově jeden soubor o velikosti 1MB)
+        - vhodný pro testování kvót
       
