@@ -26,6 +26,9 @@
           - ```<domovský adresář>``` ukazuje umístění (cestu) k domovskému adresáři daného uživatele
           - ```<shell>``` interpret příkazů, který daný uživatel využívá
       - pro „klasické“ uživatele zpravidla lze nalézt jejich domovské adresáře v adresáři ```/home```
+      - informace ohledně přihlašovacch hesel jednotlivých uživatelů se nachází v souboru ```/etc/shadow``` (hash hesla, informace o době platnosti hesla, ...), detailnější informace se nachází v manuálových stránkach (```man shadow```)
+      - informace o skupinách uživatelů se nacházejí v souboru ```/etc/group```
+      - adresář ```/etc/skel``` slouží jako template pro vytváření uživatelů, při jeho vytvoření sa tento adresář zkopíruje (s příslušnými právy) do domovského adresáře uživatele, pokud je nutné, aby uživatel měl při vytvoření ve svém domovském adresáři již něco defaultně umístěno, bude to něco umístěno právě do tohoto adreásře (při vytvoření uživatele se tento adresář zkopíruje spolu s tím něčím)
       ```console
       root@<your_computer_name>:~$ adduser franta
       ```
