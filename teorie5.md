@@ -58,3 +58,29 @@
           root@<your_computer_name>:~$ passwd -e franta
           ```
           - tento příkaz způsobí vynucení hesla uživatele franta (okamžitě po jeho přihlášení)
+    - ### Práce skupinami
+      ```console
+      root@<your_computer_name>:~$ addgroup student
+      ```
+      - tento příkaz vytvoří novou skupinu student
+      ```console
+      root@<your_computer_name>:~$ addgroup franta student
+      ```
+      - tento příkaz přiřadí uživatele franta do skupiny student
+      ```console
+      root@<your_computer_name>:~$ delgroup franta student
+      ```
+      - tento příkaz odstraní uživatele franta ze skupiny student
+  - ## Uživatelská práva
+    ```console
+    drwxrwxrwx
+    ```
+    - formát uživatelských práv, kde:
+      - ```d``` známená že se jedná o adresář (pokud se jedná o soubor, místo ```d``` se na této pozici nachází ```-```)
+      - ```r``` znamená opravnění pro čtení
+      - ```w``` znamená opravnění pro zápis
+      - ```x``` znamená opravnění pro spuštění (u adresáře to znamená průchod adresářem)
+      - první trojice ```rwx``` jsou práva uživatele (vlastníka)
+      - druhá trojice ```rwx``` jsou práva skupiny (vlastníka)
+      - třetí trojice ```rwx``` jsou práva pro všechny ostatní
+      - pokud některé z těchto oprávnění není povoleno, je na dané pozici místo příslušného písmene znak ```-```
