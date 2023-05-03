@@ -111,3 +111,34 @@
         - specifikuje ```x``` bit
         - pokud je nastaven, tak jakémukoli souboru (či podadresáři) vytvořeném v tomto adresáři, bude nastaven vlastník tohoto adresáře (podle toho, ve které z trojic se ```s``` bit nachází, např. pokud se v adresáři s právy ```drwxrws---``` vytvoří soubor, pak tomuto souboru budou nastavena práva nikoli skupiny toho, kdo soubor vytvořil, ale skupiny (vlastníka) daného adresáře s ```s``` bitem)
         - standartně se programy spouští s oprávněním toho, kdo jej spustil (spuštěný program může to, co může ten, kdo jej spustil), pokud však je u tohoto programu nastaven ```s``` bit u uživatele (vlastníka), program se spustí s právy tohoto uživatele (vlastníka) (nikoli s právy toho, kdo jej spustil), proto obecně nikdy nenastavovat ```s``` bit u uživatele (vlastníka), a už vůbec nikdy u souborů (programů), které vlastní root!
+       - existují další rozšířená práva (atributy), která rozšiřují ta základní ```rwx``` (např. specifikace čistě pro mazání, ...), u Debianu jsou standartně vypnuta
+
+  - ## Diskové kvóty
+    - místo (disková velikost) definované uživateli
+    - vázané na konkrétní svazek (disk) (jiné kvóty na jiných discích)
+    - způsob jakým uživatelům zabránit přehlcení disku
+    - standartně se kvóty pro uživatele definují na novém disku (namountovém do adresáře ```/home```)
+    - pro práci s kvótami se využívá utilitka ```qouta```:
+      ```console
+      root@<your_computer_name>:~$ apt install quota
+      ```
+        - tento příkaz nainstaluje utilitku ```qouta```
+      ```console
+      root@<your_computer_name>:~$ mount -o remount,usrquota,grpquota /home
+      root@<your_computer_name>:~$ service quota start
+      root@<your_computer_name>:~$ quotacheck /dev/sdb1
+      root@<your_computer_name>:~$ quotaon /dev/sdb1
+      ```
+        - první příkaz přemountuje (změní parametry mountpointu), kdy přídá parametry ```usrquota``` a ```grpquota```
+        - druhý příkaz nastartujte (spustí) službu pracující s kvótami
+        - třetí příkaz slouží k ověření, zda jsou na svazku (disku) kvóty podporovány
+        - čtvrtý příkaz zapne kvóty na daném svazku
+      ```console
+      root@<your_computer_name>:~$ edquota franta
+      ```
+        - tento příkaz umožní nastavit uživateli franta kvóty (otevře editor s konfigurací)
+      ```console
+      root@<your_computer_name>:~$ quota franta
+      ```
+        - tento příkaz zobrazí nastavení kvóty uživatele franta
+      
