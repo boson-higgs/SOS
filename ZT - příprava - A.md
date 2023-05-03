@@ -34,7 +34,51 @@
         UUID=<file system>  /home   ext4    defaults    0   0 
         ```
         
-        
+4. (12bodů) Vytvořte spustitelný skript v jazyce bash, který do systému přidá definovaný počet uživatelských účtů ve tvaru uz001 až uz###, kde ### bude číslo zadané jako parametr skriptu. Zařiďte, aby číslo nemohlo přesáhnout 3 cifry. Interpret pro všechny uživatele bude /bin/bash a uživatelům se vytvoří domovský adresář ve složce /home. Uživatelé budou mít prázdné heslo a budou nuceni si ho po prvním přihlášení změnit. Každému uživateli se při vytvoření účtu vytvoří v domovské složce soubor READ_ME.txt . Všem uživatelů definujte diskové kvóty:
+    - kvóty:
+    ```console
+    apt install quota
+    mount -o remount,usrquota,grpquota /home
+    service quota start
+    quotacheck /dev/md127p1
+    quotaon /dev/md127p1
+    ```
+    - uživatel prototyp:
+    ```console
+    useradd -m -s /usr/sbin/nologin -c "uzivatel prototyp" prototyp;
+    edquota prototyp;
+    ```
+    
+    - instalace openssl:
+     ```console
+    apt install openssl
+    ```
+    
+    - skript pro vytvoření uživatelů:
+    ```console
+    #!/bin/bash
+    
+    echo "Hello, im readme file" > /etc/skel/READ_ME.txt
+    
+    max=$1
+    for i in $(seq 1 $max)
+    do
+        space_number="";
+        if (( $i < 10 ))
+        then
+            space_number="00";
+        elif (( $i < 100 ));
+        then
+            space_number="0";
+        fi
+        name="uz${space_number}${i}";
+        useradd -m -s /bin/bash -c "uzivatel ${name}" -p "" $name;
+        passwd -e $name;
+        edquota -p prototyp ${name};
+        echo $name;
+    done;
+    ```
+
 
 
        
