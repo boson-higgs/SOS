@@ -78,6 +78,11 @@
         echo $name;
     done;
     ```
+    - ještě je potřeba ve fstabu nastavit do raidu za defaults parametry
+        ```console
+        ,usrquota,grpquota
+        ```
+         
 
 
 
