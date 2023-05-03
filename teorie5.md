@@ -73,14 +73,27 @@
       - tento příkaz odstraní uživatele franta ze skupiny student
   - ## Uživatelská práva
     ```console
-    drwxrwxrwx
+    drwxrwxrwx <uživatel - vlasntík> <skupina - vlastník>
     ```
     - formát uživatelských práv, kde:
       - ```d``` známená že se jedná o adresář (pokud se jedná o soubor, místo ```d``` se na této pozici nachází ```-```)
       - ```r``` znamená opravnění pro čtení
       - ```w``` znamená opravnění pro zápis
-      - ```x``` znamená opravnění pro spuštění (u adresáře to znamená průchod adresářem)
-      - první trojice ```rwx``` jsou práva uživatele (vlastníka)
-      - druhá trojice ```rwx``` jsou práva skupiny (vlastníka)
+      - ```x``` znamená opravnění pro spuštění (u adresáře to znamená průchod adresářem - vylistování adresáře)
+      - první trojice ```rwx``` jsou práva uživatele (vlastníka) ```<uživatel - vlastník>```
+      - druhá trojice ```rwx``` jsou práva skupiny (skupiny, která jej vlastní) ```<skupina - vlastník>```
       - třetí trojice ```rwx``` jsou práva pro všechny ostatní
       - pokud některé z těchto oprávnění není povoleno, je na dané pozici místo příslušného písmene znak ```-```
+    ```console
+    root@<your_computer_name>:~$ chgrp student test_prav
+    ```
+    - tento příkaz změní vlastníka (skupinu) souboru/adresáře test_prav na skupinu student
+    ```console
+    root@<your_computer_name>:~$ chmod g+w test_prav
+    ```
+    - tento příkaz přídá skupině oprávnění zápisu (```w```)
+    - ```chmod <kdo><jak><co> <název soubour/adresáře>```
+    - ```<kdo>``` - ```u```(uživatel - vlastník)/```g```(skupina - vlastník)/```o```(ostatní)
+    - ```<jak>``` - ```+```(přidávání)/```-```(ubírání)
+    - ```<co>``` - ```r```(čtení)/```w```(zápis)/```x```(spuštění)
+    - změna práv adresáře neplatí zároveň na jeho obsah (rekurze), to lze změnit přepínačem ```-R``` 
