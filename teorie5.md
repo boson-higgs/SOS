@@ -24,12 +24,30 @@
           - ```<GID>``` znamená ID (jednoznáčny, unikátní identifikátor) skupiny, do které uživatel patří
           - ```<poznámky>``` jsou detailnější informace o uživateli (nepovinné) ve formátu ```<celé jméno>,<číslo místnosti>,<telefon do zaměstnání>,<telefon domů>,<ostatní informace>```
           - ```<domovský adresář>``` ukazuje umístění (cestu) k domovskému adresáři daného uživatele
-          - ```<shell>``` interpret příkazů, který daný uživatel využívá
+          - ```<shell>``` je interpret příkazů, který daný uživatel využívá
       - pro „klasické“ uživatele zpravidla lze nalézt jejich domovské adresáře v adresáři ```/home```
       - informace ohledně přihlašovacch hesel jednotlivých uživatelů se nachází v souboru ```/etc/shadow``` (hash hesla, informace o době platnosti hesla, ...), detailnější informace se nachází v manuálových stránkach (```man shadow```)
       - informace o skupinách uživatelů se nacházejí v souboru ```/etc/group```
       - adresář ```/etc/skel``` slouží jako template pro vytváření uživatelů, při jeho vytvoření sa tento adresář zkopíruje (s příslušnými právy) do domovského adresáře uživatele, pokud je nutné, aby uživatel měl při vytvoření ve svém domovském adresáři již něco defaultně umístěno, bude to něco umístěno právě do tohoto adreásře (při vytvoření uživatele se tento adresář zkopíruje spolu s tím něčím)
-      ```console
-      root@<your_computer_name>:~$ adduser franta
-      ```
-      - tento příkaz vytvoří uživatele franta
+      - #### adduser
+        ```console
+        root@<your_computer_name>:~$ adduser franta
+        ```
+        - tento příkaz vytvoří uživatele franta
+        - při vytvoření se ptá na dané informace ohledně uživatele (heslo, celé jméno, číslo místnosti, ...), proto není vhodný pro vytváření uživatelů skriptem
+        ```console
+        root@<your_computer_name>:~$ deluser franta
+        ```
+        - tento příkaz odstraní uživatele franta
+        - bývá zvykem při osdtranění uživatele zachovat jeho domovský adresář (lze však vynutit odstranění domovského adresáře pomocí příznaku ```--remove-home```)
+      - #### useradd
+        - určený přímo pro vytváření uživatelů skriptem
+        - je nutné použít ```openssl``` (```apt install openssl```)
+          ```console
+          root@<your_computer_name>:~$ useradd -m -s /bin/bash -c "Bezny Franta Uzivatel" -p $(echo "P4sSw0rD" | openssl passwd -1 -stdin) franta
+          ```
+          - tento příkaz vytvoří nového uživatele frant, kde:
+            - ```-m``` vytvoří uživateli domovský adresář
+            - ```-s``` nastaví interpret příkazu (v tomto případě na ```/bin/bash```)
+            - ```-c``` je poznámka k uživateli (v tomto případě: Bezny Franta Uzivatel)
+            - ```-p``` nastaví heslo (jeho hash) (pomocí ```openssl```, kterému se na vstup přiřadí dané heslo a, ke kterému vrátí příslušný hash)
