@@ -46,8 +46,15 @@
           ```console
           root@<your_computer_name>:~$ useradd -m -s /bin/bash -c "Bezny Franta Uzivatel" -p $(echo "P4sSw0rD" | openssl passwd -1 -stdin) franta
           ```
-          - tento příkaz vytvoří nového uživatele frant, kde:
+          - tento příkaz vytvoří nového uživatele franta, kde:
             - ```-m``` vytvoří uživateli domovský adresář
             - ```-s``` nastaví interpret příkazu (v tomto případě na ```/bin/bash```)
             - ```-c``` je poznámka k uživateli (v tomto případě: Bezny Franta Uzivatel)
             - ```-p``` nastaví heslo (jeho hash) (pomocí ```openssl```, kterému se na vstup přiřadí dané heslo a, ke kterému vrátí příslušný hash)
+          - lze vytvořit i uživatele bez hesla (s prázdným řetězcem za parametrem ```-p```), nicméně vždy by se měla okamžitě u uživatele vynutit jeho změna
+      - #### passwd
+        - utilitka pro manipulaci s hesly
+          ```console
+          root@<your_computer_name>:~$ passwd -e franta
+          ```
+          - tento příkaz způsobí vynucení hesla uživatele franta (okamžitě po jeho přihlášení)
