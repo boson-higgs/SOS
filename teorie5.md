@@ -144,9 +144,26 @@
       root@<your_computer_name>:~$ quota franta
       ```
         - tento příkaz zobrazí nastavení kvóty uživatele franta
-       ```console
+      ```console
+      root@<your_computer_name>:~$ repquota -a
+      ```
+        - tento příkaz vypíše informace o všech uživatelích a jejich kvótách
+      ```console
       root@<your_computer_name>:~$ dd if=/dev/zero of=nuly bs=1k count=1000
       ```
         - tento příkaz vytvoří soubour o počtu 1000 bloků, kdy jeden blok má velikost 1kB (celkově jeden soubor o velikosti 1MB)
         - vhodný pro testování kvót
+      ```console
+      root@<your_computer_name>:~$ edquota -p franta franta2
+      ```
+        - tento příkaz uživateli franta2 nastaví stejnou kvótu jakou má uživatel franta (tzv. prototyp)
+        - je vhodné si vytvořit prototyp uživatele, kterému se kvóta nastaví ručně a při vytváření ostatních uživatelů (v cyklu) se přiřadí tato kvóta z prototypu
+      ```console
+      root@<your_computer_name>:~$ edquota -t
+      root@<your_computer_name>:~$ edquota -T <jméno uživatele>
+      ```
+        - prvním příkazem lze nastavit defaultní čas odkladu
+        - druhým příkazem lze nastavit čas odkladu konkrétnímu uživateli
+      - pokud je požadavek na aktivaci kvót při bootu OS (startu PC), je nutné ve ```fstab```u u parametrů za hodnotu ```defaults``` (oddělené čárkami) uvést i parametry ```usrquota``` a ```grpquota```
+   
       
