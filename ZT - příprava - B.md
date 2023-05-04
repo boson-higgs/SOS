@@ -41,3 +41,62 @@
         ```        
         UUID=<file system>  /home   ext4    defaults    0   0 
         ```
+
+
+4. (12bodů) Vytvořte spustitelný skript v jazyce bash, který do systému přidá 100 uživatelských účtů. Loginy budou user00 až user99, interpret pro všechny uživatele bude /bin/bash a uživatelům se vytvoří domovský adresář ve složce /home. Jako parametr skriptu bude možné zadat defaultní heslo pro vytvářené uživatele. Skript otestuje zdali je heslo delší než 5 znaků. V případě, že nebude zadaný parametr, bude heslo prázdné. Všem uživatelů definujte diskové kvóty:
+    
+     - kvóty:
+    ```console
+    apt install quota
+    mount -o remount,usrquota,grpquota /home
+    service quota start
+    quotacheck /dev/md127p1
+    quotaon /dev/md127p1
+    ```
+    
+    - uživatel prototyp:
+    ```console
+    useradd -m -s /usr/sbin/nologin -c "uzivatel prototyp" prototyp;
+    edquota prototyp;
+    ```
+    
+    - instalace openssl:
+     ```console
+    apt install openssl
+    ```
+    
+    - skript pro vytvoření uživatelů:
+    ```console
+    #!/bin/bash
+    
+    password=$1
+    for i in $(seq 0 99)
+    do
+        empty_space="";
+        if (( $i < 10))
+        then
+            empty_space="0";
+        fi
+        
+        name="user${empty_space}${i}"; 
+        length=${#password};
+        
+        if (( $length > 5))
+        then            
+            useradd -m -s /bin/bash -c "uzivatel ${name}" -p $(echo $password | openssl passwd -1 -stdin) $name;
+            edquota -p prototyp ${name};
+        elif (( $length == 0 ));
+        then
+            useradd -m -s /bin/bash -c "uzivatel ${name}" -p "" $name;
+            edquota -p prototyp ${name};
+        else
+            echo "too short password";
+        fi
+        
+    done;
+    ```
+    - ještě je potřeba ve fstabu nastavit do raidu za defaults parametry
+        ```console
+        ,usrquota,grpquota
+        ```
+    
