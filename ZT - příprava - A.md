@@ -9,6 +9,19 @@
         apt install man
         ```
         
+        
+2. (3body) Nakonfigurujte systém tak, aby síťová karta na rozhraní NAT dostávala IP adresu prostřednictvím protokolu DHCP (z Virtualboxu) a druhá karta bude mít IP adresu nastavenou staticky. Pro konfiguraci obou rozhraní využijte standardní metody používané v distribuci Debian:
+    - nastavení staické adresy v /etc/network/interfaces:        
+     
+    ```
+    allow-hotplug enp0s8
+    iface enp0s8 inet static
+    address 192.168.57.2/24
+    ```  
+
+
+
+        
 3. (10bodů) Do virtualizovaného PC přidejte další tři pevné disky o kapacitě alespoň 200MB. Z těchto disků vytvořte v systému RAID který bude odolný proti výpadku dvou disků. Na RAID vytvořte jeden oddíl a naformátujte ho souborovým systémem ext4. Tento souborový systém připojte jako složku /home. Nakonfigurujte systém tak, aby připojení diskového pole proběhlo vždy po startu systému, pro identifikaci raidu použijte UUID:
     - instalace a vytvoření, vytvoření oddílu:
         ```console        
