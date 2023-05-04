@@ -170,7 +170,7 @@
                 - lze použít globální konfiguraci nebo lokální konfiguraci
         - po změně konfigurace je opět nutné provést restart služby:
         ```console
-        root@<your_computer_name>:~$ usr/sbin/service isc-dhcp-server restart
+        root@<your_computer_name>:~$ /usr/sbin/service isc-dhcp-server restart
         ```
 
         - na virtuálním PC představující zařízení žádající o přidělení IP adresy je nutné shodit a opětovně nahodit síťovou kartu, následně si říct o IP adresu ze serveru a otestovat pomocí příkazu ```ping```:
