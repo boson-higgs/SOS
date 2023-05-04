@@ -97,6 +97,20 @@
         ```
          
 
+5. (5bodů) V kořenovém adresáři vytvořte složku /projekty. V systému vytvořte skupinu projekty a přidejte do ní deset uživatelů. Složka /projekty bude umožňovat přístup (rwx) jen uživatelům patřícím do skupiny projekty. Pokud některý z uživatelů vytvoří v této složce soubor, tento bude automaticky patřit skupině projekty a nikoli domovské skupině uživatele, který ho vytvořil:
+    - vytvoření složky projekty:
+    ```console
+    mkdir /projekty
+    addgroup projekty
+    for usern in $(seq 1 9)
+    do
+        addgroup "uz00${usern}" projekty;
+    done
+    addgroup uz010 projekty
+    chgrp projekty /projekty
+    chmod 070 /projekty
+    chmod g+s /projekty
+    ```
 
 
        
