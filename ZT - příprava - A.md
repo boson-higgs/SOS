@@ -125,3 +125,20 @@
         /usr/sbin/a2enmod userdir
         systemctl reload apache2
         ```
+        
+9. (5bodů) Nainstalujte server NFS a vyexportujte složku /var/www/html pro všechny počítače v síti „Host-only network“. Správnou funkci demonstrujte:
+    - instalace a nastavení - server:
+      ```console
+      apt install nfs-kernel-server
+      mcedit /etc/exports
+      ```
+    - v /etc/export přidat:
+      ```console
+      /var/www/html      192.168.41.0/24(rw,sync,no_subtree_check)
+      ```
+    - restart služby NFS
+      ```console
+      service nfs-kernel-server restart
+      ```
+    - 
+       
