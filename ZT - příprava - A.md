@@ -16,7 +16,7 @@
     ```
     allow-hotplug enp0s8
     iface enp0s8 inet static
-    address 192.168.57.2/24
+    address 192.168.41.11/24
     ```  
 
 
@@ -140,5 +140,9 @@
       ```console
       service nfs-kernel-server restart
       ```
-    - 
+    - instalace a nastavení - klient:
+       ```console
+      apt install nfs-common
+      mount 192.168.41.11:/var/www/html /opt
+      ``` 
        
