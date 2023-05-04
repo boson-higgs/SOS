@@ -138,7 +138,7 @@
     - ### Konfigurace
         - nachází se ve dvou souborech:
             - první v  ```/etc/default/isc-dhcp-server``` - pouze je nutné přidat do položky ```INTERFACESv4``` rozhraní, které si mají o IP adresu (dané verze - IPv4) z DHCP serveru říct (typicky ```enp0s8```)
-            - druhá se nachází v /etc/dhcp/dhcp.conf - změnit několik položek:
+            - druhá se nachází v ```/etc/dhcp/dhcpd.conf``` - změnit několik položek:
                 - změnit adresu primárního a sekundárního DNS serveru (položka ```option domain-name-servers```):
                   ```
                   option domain-name-servers <adresa primárního DNS serveru> <adresa sekundárního DNS serveru>;
