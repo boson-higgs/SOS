@@ -99,4 +99,28 @@
         ```console
         ,usrquota,grpquota
         ```
-    
+        
+5. (5bodů) V adresáři /home vytvořte složku /studenti. V systému vytvořte skupinu studenti a přidejte do ní 10 uživatelů. Složka /home/studenti bude umožňovat přístup jen uživatelům patřícím do skupiny studenti (rwx). Pokud některý z uživatelů vytvoří v této složce soubor, tento bude automaticky patřit skupině studenti a nikoli skupině uživatele, který ho vytvořil:
+     - vytovření a přiřazení:  
+        ```console
+        mkdir /home/studenti
+        addgroup studenti
+        for usern in $(seq 1 9)
+        do
+            addgroup "user0${usern}" studenti;
+        done
+        addgroup user10 studenti
+        chgrp studenti /home/studenti
+        chmod 070 /home/studenti
+        chmod g+s /home/studenti
+        ```
+
+6. (3body) Nainstalujte webový server Apache2 s podporou PHP a SSL 
+
+    ```console
+    apt install apache2
+    apt install libapache2-mod-php
+    /usr/sbin/a2enmod ssl
+    /usr/sbin/a2ensite default-ssl
+    systemctl reload apache2
+    ```  
